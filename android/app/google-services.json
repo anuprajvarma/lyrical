@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "900118597755",
+    "project_id": "lyrical-47963",
+    "storage_bucket": "lyrical-47963.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900118597755:android:33dd543807bddb119292de",
+        "android_client_info": {
+          "package_name": "com.example.lyrical"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900118597755-tclrlpeu5gvt7fh8mabq7nos38sludtj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASpV8X44Zy_yGxAaDd_6IXbFDgv1tu1zI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900118597755-tclrlpeu5gvt7fh8mabq7nos38sludtj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
