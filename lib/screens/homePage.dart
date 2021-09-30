@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lyrical/screens/loggedIn.dart';
+import 'package:lyrical/screens/lyricalpage.dart';
 import 'package:lyrical/screens/loginPage.dart';
 
 class Homepage extends StatelessWidget {
