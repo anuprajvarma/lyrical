@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             scaffoldBackgroundColor: const Color(0xff000000),
             appBarTheme: AppBarTheme(
-              color: const Color(0xFF151026),
+              color: const Color(0xFFB71C1C),
             ),
           ),
           home: MyStatefulWidget(),
