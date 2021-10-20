@@ -1,22 +1,33 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lyrical/screens/likes.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+final _auth = FirebaseAuth.instance;
+final _firestore = FirebaseFirestore.instance;
+
 class LyricsPage extends StatefulWidget {
+  String artist;
+  String title;
+
+  LyricsPage({this.artist = '', this.title = ''});
   @override
-  _LyricsPageState createState() => _LyricsPageState();
+  _LyricsPageState createState() =>
+      _LyricsPageState(artist: artist, title: title);
 }
 
 class _LyricsPageState extends State<LyricsPage> {
+  String artist;
+  String title;
+
+  _LyricsPageState({this.artist = '', this.title = ''});
   bool isLike = false;
   var hunt;
-  String fact = '';
-  String title = '';
+  String lyric = '';
 
-  void Likes() {
+  void Likes(bool isLike) {
     if (isLike == true) {
       hunt = Colors.green;
     } else {
@@ -25,13 +36,13 @@ class _LyricsPageState extends State<LyricsPage> {
   }
 
   Future Apicall() async {
-    http.Response response = await http
-        .get(Uri.parse('https://api.lyrics.ovh/v1/justin%20bieber/baby'));
+    http.Response response =
+        await http.get(Uri.parse('https://api.lyrics.ovh/v1/$artist/$title'));
 
     if (response.statusCode == 200) {
       var getdata = json.decode(response.body);
       setState(() {
-        fact = getdata['lyrics'];
+        lyric = getdata['lyrics'];
       });
     }
   }
@@ -47,7 +58,7 @@ class _LyricsPageState extends State<LyricsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Lyrics',
+          title,
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.w500,
@@ -61,11 +72,38 @@ class _LyricsPageState extends State<LyricsPage> {
               color: hunt,
             ),
             onPressed: () {
-              setState(() {
+              setState(() async {
                 isLike = !isLike;
+
+                if (isLike == true) {
+                  var fetchofData = await _firestore
+                      .collection('likes')
+                      .doc('documents')
+                      .get();
+
+                  var mapOfdata = fetchofData.data();
+
+                  var listOflike = mapOfdata!['like'];
+
+                  listOflike.add({"artist": artist, "lyrics": title});
+
+                  await FirebaseFirestore.instance
+                      .collection('likes')
+                      .doc('documents')
+                      .set({'like': listOflike});
+                } else {
+                  var fetchofData = await _firestore
+                      .collection('likes')
+                      .doc('documents')
+                      .get();
+
+                  var mapOfdata = fetchofData.data();
+
+                  var listOflike = mapOfdata!['like'];
+
+                  listOflike.remove();
+                }
               });
-              child:
-              Likes();
             },
           ),
         ],
@@ -82,7 +120,7 @@ class _LyricsPageState extends State<LyricsPage> {
                   SizedBox(
                     child: InkWell(
                       child: Text(
-                        fact.toString(),
+                        lyric.toString(),
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,

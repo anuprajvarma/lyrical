@@ -26,8 +26,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       body: Screen[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.black,
-        selectedItemColor: Colors.red[900],
+        backgroundColor: Colors.grey[900],
+        selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
         iconSize: 30,
         selectedFontSize: 15,

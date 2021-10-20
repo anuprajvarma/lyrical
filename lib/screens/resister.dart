@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:lyrical/appColorScheme/contant.dart';
 import 'package:lyrical/screens/navigationBar.dart';
 import 'package:lyrical/screens/rounded_button.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegistrationScreen extends StatefulWidget {
+  const RegistrationScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
   final _auth = FirebaseAuth.instance;
+  bool showSpinner = false;
   late String email;
   late String password;
 
@@ -21,17 +23,20 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Color(0xff000000),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.all(24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          //crossAxisAlignment: CrossAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Row(
               children: [
                 SizedBox(width: 87),
                 Text(
                   'Lyrical',
-                  style: TextStyle(color: Colors.white, fontSize: 50),
+                  style: TextStyle(
+                    fontSize: 50,
+                    color: Colors.white,
+                  ),
                 )
               ],
             ),
@@ -67,13 +72,13 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             SizedBox(height: 20),
             MyButton(
-                title: 'Log In',
+                title: 'Resister',
                 colour: Colors.lightBlueAccent,
                 onPressed: () async {
                   try {
-                    final user = await _auth.signInWithEmailAndPassword(
+                    final newUser = await _auth.createUserWithEmailAndPassword(
                         email: email, password: password);
-                    if (user != null) {
+                    if (newUser != null) {
                       Navigator.push(
                           context,
                           MaterialPageRoute(

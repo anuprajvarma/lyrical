@@ -4,11 +4,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MyTextField extends StatelessWidget {
   String hintString;
-  var onchange;
+  void Function(String)? onChanged;
 
-  MyTextField(
-    this.hintString,
-  );
+  MyTextField({this.hintString = '', this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +15,7 @@ class MyTextField extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          color: Colors.grey[900],
+          color: Color(0xFF221F1F),
         ),
         child: Row(
           children: [
@@ -33,7 +31,8 @@ class MyTextField extends StatelessWidget {
             ),
             Expanded(
               child: TextField(
-                onChanged: onchange,
+                autofocus: false,
+                onChanged: onChanged,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintStyle: TextStyle(

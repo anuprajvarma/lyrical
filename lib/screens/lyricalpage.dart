@@ -1,23 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lyrical/auth/google_sign_in.dart';
 import 'package:lyrical/SearchBox/myTextfield.dart';
-import 'package:provider/provider.dart';
 
-import 'lyricspage.dart';
+import 'package:lyrical/screens/lyricspage.dart';
 
 class LoggedInWidget extends StatefulWidget {
-  const LoggedInWidget({Key? key}) : super(key: key);
-
   @override
   _LoggedInWidgetState createState() => _LoggedInWidgetState();
 }
 
 class _LoggedInWidgetState extends State<LoggedInWidget> {
+  final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
   bool status = false;
-  String title = '';
-  String lytics = '';
+  late String title;
+  late String artist;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +30,7 @@ class _LoggedInWidgetState extends State<LoggedInWidget> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        backgroundColor: Colors.grey[900],
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
@@ -38,9 +39,8 @@ class _LoggedInWidgetState extends State<LoggedInWidget> {
                 color: Colors.white,
               ),
               onPressed: () {
-                final provider =
-                    Provider.of<GoogleSignInProvider>(context, listen: false);
-                provider.logout(context);
+                _auth.signOut();
+                Navigator.pop(context);
               }),
         ],
       ),
@@ -49,180 +49,42 @@ class _LoggedInWidgetState extends State<LoggedInWidget> {
         child: Column(
           children: [
             MyTextField(
-              'Artist',
+              hintString: 'Artist',
+              onChanged: (val) {
+                artist = val;
+              },
             ),
-            MyTextField('Title'),
-            Expanded(
-              child: CustomScrollView(
-                primary: false,
-                slivers: <Widget>[
-                  SliverPadding(
-                    padding: const EdgeInsets.all(20),
-                    sliver: SliverGrid.count(
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      crossAxisCount: 2,
-                      children: <Widget>[
-                        SizedBox(
-                          child: InkWell(
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              child: const Text(
-                                "Lyrics",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              color: Colors.grey[900],
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LyricsPage()));
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          child: InkWell(
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              child: const Text(
-                                "Lyrics",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              color: Colors.grey[900],
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LyricsPage()));
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          child: InkWell(
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              child: const Text(
-                                "Lyrics",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              color: Colors.grey[900],
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LyricsPage()));
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          child: InkWell(
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              child: const Text(
-                                "Lyrics",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              color: Colors.grey[900],
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LyricsPage()));
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          child: InkWell(
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              child: const Text(
-                                "Lyrics",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              color: Colors.grey[900],
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LyricsPage()));
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          child: InkWell(
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              child: const Text(
-                                "Lyrics",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              color: Colors.grey[900],
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LyricsPage()));
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          child: InkWell(
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              child: const Text(
-                                "Lyrics",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              color: Colors.grey[900],
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LyricsPage()));
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+            MyTextField(
+              hintString: 'Title',
+              onChanged: (val) {
+                title = val;
+              },
+            ),
+            // SizedBox(height: 5),
+            MaterialButton(
+              onPressed: () {
+                _firestore.collection('History').add({
+                  'artist': artist,
+                  'lyrics': title,
+                });
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return LyricsPage(
+                    artist: artist,
+                    title: title,
+                  );
+                }));
+              },
+              child: Text(
+                'Get Lyrics',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                ),
               ),
+              color: Color(0xFF221F1F),
+              textColor: Colors.white,
             ),
+            //MyStatefulWidget(),
           ],
         ),
       ),
