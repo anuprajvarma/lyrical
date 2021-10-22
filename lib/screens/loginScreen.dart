@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:lyrical/appColorScheme/contant.dart';
-import 'package:lyrical/screens/navigationBar.dart';
-import 'package:lyrical/screens/rounded_button.dart';
+
+import 'package:lyrical/screens/mainAppNavigation%5C.dart';
+import 'package:lyrical/components/myButton.dart';
+import 'package:lyrical/constant/textStyle.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,8 +14,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
-  late String email;
-  late String password;
+  late String email = '';
+  late String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => MyStatefulWidget()));
+                              builder: (context) => MainAppNavigation()));
                     }
                   } catch (e) {
                     print(e);

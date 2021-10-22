@@ -3,32 +3,31 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lyrical/screens/getLyrics.dart';
-import 'package:lyrical/screens/lyricsCard.dart';
+import 'package:lyrical/firebase/getLyrics.dart';
+import 'package:lyrical/components/LikeCard.dart';
 
-final _auth = FirebaseAuth.instance;
-final _firestore = FirebaseFirestore.instance;
+final auth = FirebaseAuth.instance;
+final firestore = FirebaseFirestore.instance;
 
-class Likes extends StatefulWidget {
-  const Likes({Key? key}) : super(key: key);
+class LikesScreen extends StatefulWidget {
+  const LikesScreen({Key? key}) : super(key: key);
 
   @override
-  _LikesState createState() => _LikesState();
+  _LikesScreenState createState() => _LikesScreenState();
 }
 
-class _LikesState extends State<Likes> {
-  List like = [];
+class _LikesScreenState extends State<LikesScreen> {
+  List likes = [];
 
-  List<Widget> likeCard = [];
+  List<Widget> likeCards = [];
 
   readyLyrics() async {
-    likeCard = [];
-    like = await getlyrics();
-    for (int i = 0; i < like.length; i++) {
-      likeCard.add(NoteCard(
-        artist: like[i]['artist'],
-        title: like[i]['lyrics'],
-      ));
+    likeCards = [];
+    likes = await getlyrics();
+
+    for (int i = 0; i < likes.length; i++) {
+      likeCards
+          .add(LikeCard(artist: likes[i]['artist'], title: likes[i]['title']));
     }
   }
 
@@ -50,9 +49,10 @@ class _LikesState extends State<Likes> {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: FutureBuilder(
+          future: readyLyrics(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              if (like.length == 0) {
+              if (likes.length == 0) {
                 return Center(
                     child: Row(
                   children: [
@@ -72,10 +72,12 @@ class _LikesState extends State<Likes> {
               } else {
                 return GridView.count(
                   crossAxisCount: 2,
-                  children: likeCard,
+                  children: likeCards,
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
                 );
+
+                // return likeCard[0];
               }
             } else {
               return Center(
@@ -83,7 +85,6 @@ class _LikesState extends State<Likes> {
               );
             }
           },
-          future: readyLyrics(),
         ),
       ),
     );

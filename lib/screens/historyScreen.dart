@@ -2,18 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'package:lyrical/screens/historyData.dart';
+import 'package:lyrical/components/historyBubble.dart';
 
 final _auth = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;
 var loggedInUser;
 
-class History extends StatefulWidget {
+class HistoryScreen extends StatefulWidget {
   @override
-  _HistoryState createState() => _HistoryState();
+  _HistoryScreenState createState() => _HistoryScreenState();
 }
 
-class _HistoryState extends State<History> {
+class _HistoryScreenState extends State<HistoryScreen> {
   List User_history = [];
 
   @override

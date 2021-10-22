@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/get.dart';
-import 'package:lyrical/appColorScheme/contant.dart';
-import 'package:lyrical/screens/navigationBar.dart';
-import 'package:lyrical/screens/rounded_button.dart';
 
-class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({Key? key}) : super(key: key);
+import 'package:lyrical/screens/mainAppNavigation%5C.dart';
+import 'package:lyrical/components/myButton.dart';
+import 'package:lyrical/constant/textStyle.dart';
+
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final _auth = FirebaseAuth.instance;
   bool showSpinner = false;
   late String email;
@@ -82,7 +82,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => MyStatefulWidget()));
+                              builder: (context) => MainAppNavigation()));
                     }
                   } catch (e) {
                     print(e);

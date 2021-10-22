@@ -2,16 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lyrical/SearchBox/myTextfield.dart';
+import 'package:lyrical/components/myTextfield.dart';
 
-import 'package:lyrical/screens/lyricspage.dart';
+import 'package:lyrical/screens/lyricsScreen.dart';
 
-class LoggedInWidget extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _LoggedInWidgetState createState() => _LoggedInWidgetState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _LoggedInWidgetState extends State<LoggedInWidget> {
+class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   bool status = false;
@@ -68,7 +68,7 @@ class _LoggedInWidgetState extends State<LoggedInWidget> {
                   'lyrics': title,
                 });
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return LyricsPage(
+                  return LyricsScreen(
                     artist: artist,
                     title: title,
                   );

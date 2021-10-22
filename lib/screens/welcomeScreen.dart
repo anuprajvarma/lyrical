@@ -2,9 +2,9 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lyrical/screens/loginPage.dart';
-import 'package:lyrical/screens/resister.dart';
-import 'package:lyrical/screens/rounded_button.dart';
+import 'package:lyrical/screens/loginScreen.dart';
+import 'package:lyrical/screens/resisterScreen.dart';
+import 'package:lyrical/components/myButton.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -53,7 +53,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const RegistrationScreen()));
+                          builder: (context) => const RegisterScreen()));
                 }),
           ],
         ),

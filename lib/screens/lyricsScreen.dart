@@ -1,37 +1,43 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:lyrical/firebase/addLike.dart';
+import 'package:lyrical/firebase/checkLike.dart';
 import 'dart:convert';
 
-final _auth = FirebaseAuth.instance;
-final _firestore = FirebaseFirestore.instance;
+import 'package:lyrical/firebase/deleteLike.dart';
 
-class LyricsPage extends StatefulWidget {
-  String artist;
-  String title;
+final auth = FirebaseAuth.instance;
+final firestore = FirebaseFirestore.instance;
 
-  LyricsPage({this.artist = '', this.title = ''});
+class LyricsScreen extends StatefulWidget {
+  final String artist;
+  final String title;
+
+  LyricsScreen({this.artist = '', this.title = ''});
   @override
-  _LyricsPageState createState() =>
-      _LyricsPageState(artist: artist, title: title);
+  _LyricsScreenState createState() =>
+      _LyricsScreenState(artist: artist, title: title);
 }
 
-class _LyricsPageState extends State<LyricsPage> {
+class _LyricsScreenState extends State<LyricsScreen> {
   String artist;
   String title;
 
-  _LyricsPageState({this.artist = '', this.title = ''});
-  bool isLike = false;
-  var hunt;
+  _LyricsScreenState({this.artist = '', this.title = ''});
+  bool isLiked = false;
+  var fillColor;
   String lyric = '';
 
-  void Likes(bool isLike) {
-    if (isLike == true) {
-      hunt = Colors.green;
+  void Likes() {
+    if (isLiked == true) {
+      fillColor = Colors.green;
     } else {
-      hunt = Colors.white;
+      fillColor = Colors.white;
     }
   }
 
@@ -41,6 +47,10 @@ class _LyricsPageState extends State<LyricsPage> {
 
     if (response.statusCode == 200) {
       var getdata = json.decode(response.body);
+
+      print(artist + " " + title);
+      isLiked = await checkLike(artist, title);
+      print(isLiked);
       setState(() {
         lyric = getdata['lyrics'];
       });
@@ -66,46 +76,34 @@ class _LyricsPageState extends State<LyricsPage> {
         ),
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-            icon: Icon(
-              Icons.favorite,
-              color: hunt,
-            ),
-            onPressed: () {
-              setState(() async {
-                isLike = !isLike;
-
-                if (isLike == true) {
-                  var fetchofData = await _firestore
-                      .collection('likes')
-                      .doc('documents')
-                      .get();
-
-                  var mapOfdata = fetchofData.data();
-
-                  var listOflike = mapOfdata!['like'];
-
-                  listOflike.add({"artist": artist, "lyrics": title});
-
-                  await FirebaseFirestore.instance
-                      .collection('likes')
-                      .doc('documents')
-                      .set({'like': listOflike});
-                } else {
-                  var fetchofData = await _firestore
-                      .collection('likes')
-                      .doc('documents')
-                      .get();
-
-                  var mapOfdata = fetchofData.data();
-
-                  var listOflike = mapOfdata!['like'];
-
-                  listOflike.remove();
-                }
-              });
-            },
-          ),
+          isLiked
+              ? IconButton(
+                  icon: Icon(
+                    Icons.favorite,
+                    color: Colors.green,
+                  ),
+                  onPressed: () {
+                    //  print('yuvraj is bhadwa');
+                    deleteLike(artist, title);
+                    setState(() {
+                      isLiked = false;
+                    });
+                  },
+                )
+              : IconButton(
+                  onPressed: () async {
+                    isLiked = await checkLike(artist, title);
+                    if (isLiked == false) {
+                      addLike(artist, title);
+                    }
+                    setState(() {
+                      isLiked = true;
+                    });
+                  },
+                  icon: Icon(
+                    Icons.favorite,
+                  ),
+                )
         ],
       ),
       body: Padding(

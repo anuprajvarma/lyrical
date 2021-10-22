@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:lyrical/screens/history.dart';
-import 'package:lyrical/screens/likes.dart';
-import 'package:lyrical/screens/lyricalpage.dart';
+import 'package:lyrical/screens/historyScreen.dart';
+import 'package:lyrical/screens/likesScreen.dart';
+import 'package:lyrical/screens/homeScreen.dart';
 
 /// This is the stateful widget that the main application instantiates.
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
+class MainAppNavigation extends StatefulWidget {
+  const MainAppNavigation({Key? key}) : super(key: key);
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<MainAppNavigation> createState() => _MainAppNavigationState();
 }
 
 /// This is the private State class that goes with MyStatefulWidget.
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _MainAppNavigationState extends State<MainAppNavigation> {
   int currentIndex = 0;
   final Screen = [
-    LoggedInWidget(),
-    Likes(),
-    History(),
+    HomeScreen(),
+    LikesScreen(),
+    HistoryScreen(),
   ];
 
   @override
