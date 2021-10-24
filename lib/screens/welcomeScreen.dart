@@ -45,9 +45,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       MaterialPageRoute(
                           builder: (context) => const LoginScreen()));
                 }),
-            SizedBox(height: 2),
+            SizedBox(height: 20),
             MyButton(
-                title: 'Resistration',
+                title: 'Registration',
                 colour: Color(0xFFB71C1C),
                 onPressed: () {
                   Navigator.push(

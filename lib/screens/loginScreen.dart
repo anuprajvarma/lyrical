@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lyrical/constant/boxShadow.dart';
 
 import 'package:lyrical/screens/mainAppNavigation%5C.dart';
 import 'package:lyrical/components/myButton.dart';
@@ -39,8 +40,9 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(height: 48.0),
             Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(32)),
-                  color: Colors.white),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: Colors.grey[900],
+              ),
               child: TextField(
                   keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.center,
@@ -49,20 +51,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   decoration: kTextFieldDecoration.copyWith(
                       hintText: 'Enter your email'),
-                  style: kSendButtonTextStyle.copyWith(color: Colors.black)),
+                  style: kSendButtonTextStyle.copyWith(color: Colors.grey)),
             ),
             SizedBox(height: 20.0),
             Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(32)),
-                  color: Colors.white),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: Colors.grey[900],
+              ),
+
               child: TextField(
                   textAlign: TextAlign.center,
                   onChanged: (value) {
                     password = value;
                   },
                   decoration: kTextFieldDecoration.copyWith(
-                      hintText: 'Enter your password'),
+                    hintText: 'Enter your password',
+                  ),
                   style: kSendButtonTextStyle.copyWith(color: Colors.black)),
               //color: Colors.blueAccent,
             ),

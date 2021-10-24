@@ -2,7 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lyrical/components/historyCard.dart';
 import 'package:lyrical/components/myTextfield.dart';
+import 'package:lyrical/firebase/addHistory.dart';
+import 'package:lyrical/firebase/getHistory.dart';
 
 import 'package:lyrical/screens/lyricsScreen.dart';
 
@@ -63,10 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // SizedBox(height: 5),
             MaterialButton(
               onPressed: () {
-                _firestore.collection('History').add({
-                  'artist': artist,
-                  'lyrics': title,
-                });
+                addHistory(artist, title);
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return LyricsScreen(
                     artist: artist,

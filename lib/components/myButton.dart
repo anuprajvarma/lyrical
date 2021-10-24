@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lyrical/constant/boxShadow.dart';
 
 class MyButton extends StatelessWidget {
   MyButton(
@@ -13,15 +14,18 @@ class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(0.0),
       child: Container(
-        width: 100,
-        color: Color(0xFFB71C1C),
+        width: 400,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            color: Colors.pink[900],
+            boxShadow: customshadow),
         child: MaterialButton(
           onPressed: () {
             Navigator.pushNamed(context, onPressed());
           },
-          height: 42.0,
+          height: 16.0,
           child: Text(
             title,
             style: TextStyle(

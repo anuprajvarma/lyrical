@@ -42,9 +42,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             SizedBox(height: 48.0),
             Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(32)),
-                  color: Colors.white),
+              color: Colors.white,
               child: TextField(
                   keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.center,
@@ -57,9 +55,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             SizedBox(height: 20.0),
             Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(32)),
-                  color: Colors.white),
+              color: Colors.white,
               child: TextField(
                   textAlign: TextAlign.center,
                   onChanged: (value) {
@@ -72,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             SizedBox(height: 20),
             MyButton(
-                title: 'Resister',
+                title: 'Register',
                 colour: Colors.lightBlueAccent,
                 onPressed: () async {
                   try {

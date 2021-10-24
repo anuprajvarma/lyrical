@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:lyrical/components/historyBubble.dart';
+import 'package:lyrical/components/historyCard.dart';
+import 'package:lyrical/firebase/getHistory.dart';
 
 final _auth = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;
@@ -14,91 +16,73 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
-  List User_history = [];
+  List historys = [];
 
-  @override
-  void initState() {
-    super.initState();
-    getCurrentUser();
-  }
+  List<Widget> historyCards = [];
 
-  void getCurrentUser() async {
-    try {
-      final user = await _auth.currentUser;
-      if (user != null) {
-        loggedInUser = user;
-        print(loggedInUser.email);
-      }
-    } catch (e) {
-      print(e);
+  readyLyrics() async {
+    historyCards = [];
+    historys = await gethistory();
+
+    for (int i = 0; i < historys.length; i++) {
+      historyCards.add(HistoryCard(
+          artist: historys[i]['artist'], title: historys[i]['title']));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'History',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-            ),
+      appBar: AppBar(
+        title: Text(
+          'History',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
           ),
-          backgroundColor: Colors.grey[900],
-          automaticallyImplyLeading: false,
         ),
-        body: SafeArea(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Streambuilder(),
-          ],
-        )));
-  }
-}
+        backgroundColor: Colors.grey[900],
+        automaticallyImplyLeading: false,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: FutureBuilder(
+          future: readyLyrics(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (historys.length == 0) {
+                return Center(
+                    child: Row(
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.frownOpen,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Text(
+                      'No like lyrics',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
+                ));
+              } else {
+                return ListView(
+                  children: historyCards,
+                );
 
-class Streambuilder extends StatefulWidget {
-  @override
-  _StreambuilderState createState() => _StreambuilderState();
-}
-
-class _StreambuilderState extends State<Streambuilder> {
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-        stream: _firestore.collection('History').snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.lightBlueAccent,
-              ),
-            );
-          }
-          final storeData = snapshot.data!.docs, reversed;
-          List<HistoryBubble> massageBubbles = [];
-          for (var massage in storeData) {
-            final massageText = massage['artist'];
-            final massageSender = massage['lyrics'];
-
-            final currentUser = loggedInUser.email;
-
-            final massageBubble = HistoryBubble(
-              artist: massageSender,
-              lyrics: massageText,
-            );
-            massageBubbles.add(massageBubble);
-          }
-
-          return Expanded(
-              child: ListView(
-            reverse: true,
-            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-            children: massageBubbles,
-          ));
-        });
+                // return likeCard[0];
+              }
+            } else {
+              return Center(
+                child: CircularProgressIndicator(color: Colors.white),
+              );
+            }
+          },
+        ),
+      ),
+    );
   }
 }
