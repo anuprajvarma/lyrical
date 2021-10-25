@@ -16,10 +16,10 @@ class MyButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(0.0),
       child: Container(
-        width: 400,
+        width: 300,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
-            color: Colors.pink[900],
+            color: Colors.pink[200],
             boxShadow: customshadow),
         child: MaterialButton(
           onPressed: () {

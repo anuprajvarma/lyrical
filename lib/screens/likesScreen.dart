@@ -43,7 +43,7 @@ class _LikesScreenState extends State<LikesScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color(0xFF1D1459),
         automaticallyImplyLeading: false,
       ),
       body: Padding(

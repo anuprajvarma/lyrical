@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lyrical/components/historyCard.dart';
+
 import 'package:lyrical/components/myTextfield.dart';
 import 'package:lyrical/firebase/addHistory.dart';
-import 'package:lyrical/firebase/getHistory.dart';
 
 import 'package:lyrical/screens/lyricsScreen.dart';
+import 'package:lyrical/screens/welcomeScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -25,26 +25,38 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 70,
+        elevation: 0,
         title: Text(
-          'Lyrical',
+          'Search Lyrics',
           style: TextStyle(
             color: Colors.white,
             fontSize: 25,
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color(0xFF0C1136),
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-              icon: Icon(
-                Icons.settings,
-                color: Colors.white,
+          GestureDetector(
+            onTap: () {
+              _auth.signOut();
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => WelcomeScreen()));
+            },
+            child: Container(
+              margin: EdgeInsets.all(15),
+              width: 40,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color((0xFFE4CAE6))),
+              child: Icon(
+                Icons.logout,
+                color: Color((0xFF0C1136)),
+                size: 20,
               ),
-              onPressed: () {
-                _auth.signOut();
-                Navigator.pop(context);
-              }),
+            ),
+          ),
         ],
       ),
       body: Padding(
@@ -74,15 +86,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 }));
               },
-              child: Text(
-                'Get Lyrics',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 10,
+              child: Container(
+                width: 200,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Color(0xFFE4CAE6),
+                ),
+                child: Center(
+                  child: Text(
+                    'Get Lyrics',
+                    style: TextStyle(
+                      color: Color((0xFF0C1136)),
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
               ),
-              color: Color(0xFF221F1F),
-              textColor: Colors.white,
             ),
             //MyStatefulWidget(),
           ],

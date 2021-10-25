@@ -15,7 +15,7 @@ class MyTextField extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          color: Color(0xFF221F1F),
+          color: Color(0xFF111840),
         ),
         child: Row(
           children: [

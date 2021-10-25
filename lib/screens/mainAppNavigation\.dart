@@ -26,29 +26,29 @@ class _MainAppNavigationState extends State<MainAppNavigation> {
       body: Screen[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.grey[900],
-        selectedItemColor: Colors.white,
+        backgroundColor: Color(0xFF0C1136),
+        selectedItemColor: Color((0xFFE4CAE6)),
         unselectedItemColor: Colors.grey,
-        iconSize: 30,
+        iconSize: 35,
         selectedFontSize: 15,
         items: [
           BottomNavigationBarItem(
             icon: currentIndex == 0
                 ? Icon(Icons.home)
                 : Icon(Icons.home_outlined),
-            label: 'Home',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: currentIndex == 1
                 ? Icon(Icons.favorite)
                 : Icon(Icons.favorite_outline),
-            label: 'Likes',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: currentIndex == 2
                 ? Icon(Icons.history)
                 : Icon(Icons.history_outlined),
-            label: 'History',
+            label: '',
           ),
         ],
         currentIndex: currentIndex,

@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xff000000),
-        appBarTheme: AppBarTheme(color: const Color(0xFF000000)),
+        scaffoldBackgroundColor: Colors.black45,
+        appBarTheme: AppBarTheme(color: const Color(0xFF0C1136)),
       ),
       home: AnimatedSplashScreen(
           splash: Image.asset(
