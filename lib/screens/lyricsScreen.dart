@@ -66,207 +66,221 @@ class _LyricsScreenState extends State<LyricsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 100,
-        title: Row(
-          children: [
-            Icon(
-              FontAwesomeIcons.music,
-              size: 25,
-              color: Color(0xFF053742),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              'Lyrics',
-              style: TextStyle(
+    return Container(
+      color: Color(0xFFE8F0F2),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          toolbarHeight: 100,
+          elevation: 0,
+          title: Row(
+            children: [
+              Icon(
+                FontAwesomeIcons.music,
+                size: 25,
                 color: Color(0xFF053742),
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                'Lyrics',
+                style: TextStyle(
+                  color: Color(0xFF053742),
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          automaticallyImplyLeading: false,
+          backgroundColor: Color(0xFFE8F0F2),
+          actions: [
+            isLiked
+                ? IconButton(
+                    icon: Icon(
+                      Icons.favorite,
+                      color: Colors.pink,
+                      size: 30,
+                    ),
+                    onPressed: () {
+                      deleteLike(artist, title);
+                      setState(() {
+                        isLiked = false;
+                      });
+                    },
+                  )
+                : IconButton(
+                    onPressed: () async {
+                      isLiked = await checkLike(artist, title);
+                      if (isLiked == false) {
+                        addLike(artist, title);
+                      }
+                      setState(() {
+                        isLiked = true;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.favorite_border_outlined,
+                      size: 30,
+                      color: Colors.pink,
+                    ),
+                  ),
+            GestureDetector(
+              onTap: () {
+                _auth.signOut();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => WelcomeScreen()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.logout,
+                  color: Color((0xFF0C1136)),
+                  size: 25,
+                ),
               ),
             ),
           ],
         ),
-        automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFFE8F0F2),
-        actions: [
-          isLiked
-              ? IconButton(
-                  icon: Icon(
-                    Icons.favorite,
-                    color: Colors.pink,
-                    size: 30,
-                  ),
-                  onPressed: () {
-                    deleteLike(artist, title);
-                    setState(() {
-                      isLiked = false;
-                    });
-                  },
-                )
-              : IconButton(
-                  onPressed: () async {
-                    isLiked = await checkLike(artist, title);
-                    if (isLiked == false) {
-                      addLike(artist, title);
-                    }
-                    setState(() {
-                      isLiked = true;
-                    });
-                  },
-                  icon: Icon(
-                    Icons.favorite_border_outlined,
-                    size: 30,
-                    color: Colors.pink,
-                  ),
+        body: Container(
+          width: 400,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(50), topLeft: Radius.circular(50)),
+              color: Color(0xFF053742)),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 35,
                 ),
-          GestureDetector(
-            onTap: () {
-              _auth.signOut();
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => WelcomeScreen()));
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.logout,
-                color: Color((0xFF0C1136)),
-                size: 25,
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Color(0xFF0F5C61),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.person,
-                      color: Color(0xFF2C88B6),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      artist,
-                      style: TextStyle(
-                        color: Color(0xFFE8F0F2),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 15),
-            Container(
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Color(0xFF0F5C61),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.headphones,
-                      color: Color(0xFF2C88B6),
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text(
-                      title,
-                      style: TextStyle(
-                        color: Color(0xFFE8F0F2),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Expanded(
-              child: Container(
-                  width: 370,
-                  height: 580,
+                Container(
+                  height: 50,
+                  width: 350,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Color(0xFF0F5C61),
+                    color: Color(0xFF0F4C61),
                   ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Icon(
-                              FontAwesomeIcons.music,
-                              size: 25,
-                              color: Color(0xFF2C88B6),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Text(
-                              'Lyrics',
-                              style: TextStyle(
-                                color: Color(0xFFE8F0F2),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.person,
+                          color: Color(0xFF2C88B6),
                         ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Expanded(
-                          child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            lyric.toString(),
-                            style: TextStyle(
-                              color: Color(0xFFE8F0F2),
-                              fontSize: 17.0,
-                              wordSpacing: 3,
-                            ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          artist,
+                          style: TextStyle(
+                            color: Color(0xFFE8F0F2),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
                           ),
                         ),
-                      ))
-                    ],
-                  )),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 15),
+                Container(
+                  height: 50,
+                  width: 350,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color(0xFF0F4C61),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.headphones,
+                          color: Color(0xFF2C88B6),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          title,
+                          style: TextStyle(
+                            color: Color(0xFFE8F0F2),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Expanded(
+                  child: Container(
+                      width: 350,
+                      height: 580,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Color(0xFF0F4C61),
+                      ),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  FontAwesomeIcons.music,
+                                  size: 25,
+                                  color: Color(0xFF2C88B6),
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  'Lyrics',
+                                  style: TextStyle(
+                                    color: Color(0xFFE8F0F2),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Expanded(
+                              child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                lyric.toString(),
+                                style: TextStyle(
+                                  color: Color(0xFFE8F0F2),
+                                  fontSize: 17.0,
+                                  wordSpacing: 3,
+                                ),
+                              ),
+                            ),
+                          ))
+                        ],
+                      )),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
             ),
-            SizedBox(
-              height: 10,
-            ),
-          ],
+          ),
         ),
       ),
     );

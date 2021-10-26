@@ -120,14 +120,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       Icon(
                         FontAwesomeIcons.music,
                         size: 20,
+                        color: Color(0xFF053742),
                       ),
                       SizedBox(width: 10),
                       Text(
                         'Get Lyrics',
                         style: TextStyle(
-                          color: Color((0xFF053742)),
-                          fontSize: 15,
-                        ),
+                            color: Color((0xFF053742)),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),

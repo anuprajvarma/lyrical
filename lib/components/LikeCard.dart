@@ -29,6 +29,7 @@ class LikeCard extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.person,
+                      color: Color(0xFF2C88B6),
                     ),
                     SizedBox(
                       width: 10,
@@ -50,6 +51,7 @@ class LikeCard extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.headphones,
+                      color: Color(0xFF2C88B6),
                     ),
                     SizedBox(
                       width: 10,

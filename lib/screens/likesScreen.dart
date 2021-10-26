@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lyrical/firebase/getLyrics.dart';
 import 'package:lyrical/components/LikeCard.dart';
+import 'package:lyrical/screens/welcomeScreen.dart';
 
-final auth = FirebaseAuth.instance;
-final firestore = FirebaseFirestore.instance;
+final _auth = FirebaseAuth.instance;
+final _firestore = FirebaseFirestore.instance;
 
 class LikesScreen extends StatefulWidget {
   const LikesScreen({Key? key}) : super(key: key);
@@ -62,6 +63,23 @@ class _LikesScreenState extends State<LikesScreen> {
           ),
           backgroundColor: Color(0xFFE8F0F2),
           automaticallyImplyLeading: false,
+          actions: [
+            GestureDetector(
+              onTap: () {
+                _auth.signOut();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => WelcomeScreen()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.logout,
+                  color: Color((0xFF0C1136)),
+                  size: 25,
+                ),
+              ),
+            ),
+          ],
         ),
         body: Container(
           width: 400,
@@ -93,12 +111,23 @@ class _LikesScreenState extends State<LikesScreen> {
                       ],
                     ));
                   } else {
-                    return GridView.count(
-                      crossAxisCount: 2,
-                      children: likeCards,
-                      // crossAxisSpacing: 10,
-                      // mainAxisSpacing: 15,
-                      childAspectRatio: 1.5,
+                    return Container(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 25,
+                          ),
+                          Expanded(
+                            child: GridView.count(
+                              crossAxisCount: 2,
+                              children: likeCards,
+                              // crossAxisSpacing: 10,
+                              // mainAxisSpacing: 15,
+                              childAspectRatio: 1.5,
+                            ),
+                          ),
+                        ],
+                      ),
                     );
 
                     // return likeCard[0];
