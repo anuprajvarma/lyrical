@@ -34,7 +34,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 70,
+        toolbarHeight: 100,
         title: Row(
           children: [
             Icon(
@@ -42,14 +42,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
               color: Color(
                 0xFF053742,
               ),
-              size: 35,
+              size: 40,
             ),
             SizedBox(width: 10),
             Text(
               'History',
               style: TextStyle(
                 color: Color(0xFF053742),
-                fontSize: 25,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -82,10 +82,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   ],
                 ));
               } else {
-                return ListView(
+                return GridView.count(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 15,
+                  childAspectRatio: 1.5,
                   children: historyCards,
                 );
-
                 // return likeCard[0];
               }
             } else {

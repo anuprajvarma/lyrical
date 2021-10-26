@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class MyTextField extends StatelessWidget {
+class MyTextField_title extends StatelessWidget {
   String hintString;
+
   void Function(String)? onChanged;
 
-  MyTextField({this.hintString = '', this.onChanged});
+  MyTextField_title({this.hintString = '', this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class MyTextField extends StatelessWidget {
               width: 15,
             ),
             Icon(
-              Icons.person,
+              Icons.headphones,
               color: Color(0xFF2C88B6),
             ),
             SizedBox(

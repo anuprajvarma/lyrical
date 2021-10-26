@@ -35,13 +35,13 @@ class _LikesScreenState extends State<LikesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 70,
+        toolbarHeight: 100,
         title: Row(
           children: [
             Icon(
               Icons.favorite,
               color: Color(0xFF053742),
-              size: 35,
+              size: 40,
             ),
             SizedBox(
               width: 10,
@@ -50,7 +50,7 @@ class _LikesScreenState extends State<LikesScreen> {
               'Liked Lyrics',
               style: TextStyle(
                 color: Color(0xFF053742),
-                fontSize: 25,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -87,7 +87,7 @@ class _LikesScreenState extends State<LikesScreen> {
                   crossAxisCount: 2,
                   children: likeCards,
                   crossAxisSpacing: 10,
-                  mainAxisSpacing: 50,
+                  mainAxisSpacing: 15,
                   childAspectRatio: 1.5,
                 );
 

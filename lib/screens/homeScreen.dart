@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:lyrical/components/myTextfield.dart';
+import 'package:lyrical/components/myTextfield_for_artist.dart';
+import 'package:lyrical/components/myTextfield_for_title.dart';
 import 'package:lyrical/firebase/addHistory.dart';
 
 import 'package:lyrical/screens/lyricsScreen.dart';
@@ -22,24 +23,28 @@ class _HomeScreenState extends State<HomeScreen> {
   late String title;
   late String artist;
 
+  get person => null;
+
+  get headphones => null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 70,
+        toolbarHeight: 100,
         elevation: 0,
         title: Row(
           children: [
             Icon(
               Icons.search,
               color: Color(0xFF053742),
-              size: 35,
+              size: 40,
             ),
             Text(
               'Search Lyrics',
               style: TextStyle(
                 color: Color(0xFF053742),
-                fontSize: 25,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -69,13 +74,13 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.all(0.0),
         child: Column(
           children: [
-            MyTextField(
+            MyTextField_artist(
               hintString: 'Artist',
               onChanged: (val) {
                 artist = val;
               },
             ),
-            MyTextField(
+            MyTextField_title(
               hintString: 'Title',
               onChanged: (val) {
                 title = val;

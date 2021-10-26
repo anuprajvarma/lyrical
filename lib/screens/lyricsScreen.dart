@@ -1,15 +1,15 @@
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:lyrical/firebase/addLike.dart';
 import 'package:lyrical/firebase/checkLike.dart';
 import 'dart:convert';
 
 import 'package:lyrical/firebase/deleteLike.dart';
+import 'package:lyrical/screens/welcomeScreen.dart';
 
 final auth = FirebaseAuth.instance;
 final firestore = FirebaseFirestore.instance;
@@ -27,6 +27,7 @@ class LyricsScreen extends StatefulWidget {
 class _LyricsScreenState extends State<LyricsScreen> {
   String artist;
   String title;
+  final _auth = FirebaseAuth.instance;
 
   _LyricsScreenState({this.artist = '', this.title = ''});
   bool isLiked = false;
@@ -67,23 +68,38 @@ class _LyricsScreenState extends State<LyricsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          title,
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w500,
-          ),
+        toolbarHeight: 100,
+        title: Row(
+          children: [
+            Icon(
+              FontAwesomeIcons.music,
+              size: 25,
+              color: Color(0xFF053742),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              'Lyrics',
+              style: TextStyle(
+                color: Color(0xFF053742),
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
         automaticallyImplyLeading: false,
+        backgroundColor: Color(0xFFE8F0F2),
         actions: [
           isLiked
               ? IconButton(
                   icon: Icon(
                     Icons.favorite,
-                    color: Colors.green,
+                    color: Colors.pink,
+                    size: 30,
                   ),
                   onPressed: () {
-                    //  print('yuvraj is bhadwa');
                     deleteLike(artist, title);
                     setState(() {
                       isLiked = false;
@@ -101,9 +117,26 @@ class _LyricsScreenState extends State<LyricsScreen> {
                     });
                   },
                   icon: Icon(
-                    Icons.favorite,
+                    Icons.favorite_border_outlined,
+                    size: 30,
+                    color: Colors.pink,
                   ),
-                )
+                ),
+          GestureDetector(
+            onTap: () {
+              _auth.signOut();
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => WelcomeScreen()));
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(
+                Icons.logout,
+                color: Color((0xFF0C1136)),
+                size: 25,
+              ),
+            ),
+          ),
         ],
       ),
       body: Padding(
@@ -111,23 +144,127 @@ class _LyricsScreenState extends State<LyricsScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
-            Expanded(
-              child: ListView(
-                children: [
-                  SizedBox(
-                    child: InkWell(
-                      child: Text(
-                        lyric.toString(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.white),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Color(0xFF0F5C61),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.person,
+                      color: Color(0xFF2C88B6),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      artist,
+                      style: TextStyle(
+                        color: Color(0xFFE8F0F2),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+            ),
+            SizedBox(height: 15),
+            Container(
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Color(0xFF0F5C61),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.headphones,
+                      color: Color(0xFF2C88B6),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: Color(0xFFE8F0F2),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Expanded(
+              child: Container(
+                  width: 370,
+                  height: 580,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color(0xFF0F5C61),
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Icon(
+                              FontAwesomeIcons.music,
+                              size: 25,
+                              color: Color(0xFF2C88B6),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              'Lyrics',
+                              style: TextStyle(
+                                color: Color(0xFFE8F0F2),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Expanded(
+                          child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            lyric.toString(),
+                            style: TextStyle(
+                              color: Color(0xFFE8F0F2),
+                              fontSize: 17.0,
+                              wordSpacing: 3,
+                            ),
+                          ),
+                        ),
+                      ))
+                    ],
+                  )),
+            ),
+            SizedBox(
+              height: 10,
             ),
           ],
         ),

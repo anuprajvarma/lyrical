@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:http/http.dart';
-import 'package:lyrical/constant/boxShadow.dart';
 
 import 'package:lyrical/screens/mainAppNavigation%5C.dart';
 import 'package:lyrical/components/myButton.dart';
