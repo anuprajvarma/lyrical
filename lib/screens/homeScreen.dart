@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:lyrical/components/myTextfield.dart';
 import 'package:lyrical/firebase/addHistory.dart';
@@ -27,15 +28,24 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         toolbarHeight: 70,
         elevation: 0,
-        title: Text(
-          'Search Lyrics',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
+        title: Row(
+          children: [
+            Icon(
+              Icons.search,
+              color: Color(0xFF053742),
+              size: 35,
+            ),
+            Text(
+              'Search Lyrics',
+              style: TextStyle(
+                color: Color(0xFF053742),
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
-        backgroundColor: Color(0xFF0C1136),
+        backgroundColor: Color(0xFFE8F0F2),
         automaticallyImplyLeading: false,
         actions: [
           GestureDetector(
@@ -44,16 +54,12 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => WelcomeScreen()));
             },
-            child: Container(
-              margin: EdgeInsets.all(15),
-              width: 40,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color((0xFFE4CAE6))),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Icon(
                 Icons.logout,
                 color: Color((0xFF0C1136)),
-                size: 20,
+                size: 25,
               ),
             ),
           ),
@@ -87,20 +93,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 }));
               },
               child: Container(
-                width: 200,
-                height: 50,
+                width: 180,
+                height: 55,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Color(0xFFE4CAE6),
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color(0xFF39A2DB),
                 ),
-                child: Center(
-                  child: Text(
-                    'Get Lyrics',
-                    style: TextStyle(
-                      color: Color((0xFF0C1136)),
-                      fontSize: 15,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.music,
+                      size: 20,
                     ),
-                  ),
+                    SizedBox(width: 10),
+                    Text(
+                      'Get Lyrics',
+                      style: TextStyle(
+                        color: Color((0xFF053742)),
+                        fontSize: 15,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

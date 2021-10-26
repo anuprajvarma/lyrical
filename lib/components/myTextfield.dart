@@ -14,17 +14,17 @@ class MyTextField extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: Color(0xFF111840),
+          borderRadius: BorderRadius.circular(10),
+          color: Color(0xFF0F5C61),
         ),
         child: Row(
           children: [
             SizedBox(
               width: 15,
             ),
-            FaIcon(
-              FontAwesomeIcons.search,
-              color: Colors.grey,
+            Icon(
+              Icons.person,
+              color: Color(0xFF2C88B6),
             ),
             SizedBox(
               width: 20,
@@ -36,7 +36,7 @@ class MyTextField extends StatelessWidget {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintStyle: TextStyle(
-                      color: Colors.grey,
+                      color: Color(0xFF457585),
                       fontSize: 20,
                       fontWeight: FontWeight.w500),
                   fillColor: Colors.white,

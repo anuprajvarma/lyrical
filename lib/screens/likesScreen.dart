@@ -35,15 +35,28 @@ class _LikesScreenState extends State<LikesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Likes',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
+        toolbarHeight: 70,
+        title: Row(
+          children: [
+            Icon(
+              Icons.favorite,
+              color: Color(0xFF053742),
+              size: 35,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              'Liked Lyrics',
+              style: TextStyle(
+                color: Color(0xFF053742),
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
-        backgroundColor: Color(0xFF1D1459),
+        backgroundColor: Color(0xFFE8F0F2),
         automaticallyImplyLeading: false,
       ),
       body: Padding(
@@ -73,8 +86,9 @@ class _LikesScreenState extends State<LikesScreen> {
                 return GridView.count(
                   crossAxisCount: 2,
                   children: likeCards,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 50,
+                  childAspectRatio: 1.5,
                 );
 
                 // return likeCard[0];

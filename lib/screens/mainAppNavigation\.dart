@@ -26,9 +26,9 @@ class _MainAppNavigationState extends State<MainAppNavigation> {
       body: Screen[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Color(0xFF0C1136),
-        selectedItemColor: Color((0xFFE4CAE6)),
-        unselectedItemColor: Colors.grey,
+        backgroundColor: Color(0xFF053742),
+        selectedItemColor: Color((0xFF39A2DB)),
+        unselectedItemColor: Color(0xFF2C88B6),
         iconSize: 35,
         selectedFontSize: 15,
         items: [

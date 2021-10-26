@@ -34,15 +34,28 @@ class _HistoryScreenState extends State<HistoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'History',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
+        toolbarHeight: 70,
+        title: Row(
+          children: [
+            Icon(
+              Icons.history_outlined,
+              color: Color(
+                0xFF053742,
+              ),
+              size: 35,
+            ),
+            SizedBox(width: 10),
+            Text(
+              'History',
+              style: TextStyle(
+                color: Color(0xFF053742),
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
-        backgroundColor: Color(0xFF1D1459),
+        backgroundColor: Color((0xFFE8F0F2)),
         automaticallyImplyLeading: false,
       ),
       body: Padding(
