@@ -31,7 +31,11 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.only(left: 35, top: 130),
               child: Text(
                 'Welcome\nBack',
-                style: TextStyle(color: Colors.white, fontSize: 33),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 33,
+                  fontFamily: 'Poppins',
+                ),
               ),
             ),
             Container(

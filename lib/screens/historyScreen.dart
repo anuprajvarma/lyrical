@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:lyrical/components/historyCard.dart';
+import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/firebase/getHistory.dart';
 import 'package:lyrical/screens/welcomeScreen.dart';
 
@@ -34,7 +35,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFFE8F0F2),
+      color: AppColorSchemes.white,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -44,23 +45,22 @@ class _HistoryScreenState extends State<HistoryScreen> {
             children: [
               Icon(
                 Icons.history_outlined,
-                color: Color(
-                  0xFF053742,
-                ),
+                color: AppColorSchemes.blue1,
                 size: 40,
               ),
               SizedBox(width: 10),
               Text(
                 'History',
                 style: TextStyle(
-                  color: Color(0xFF053742),
+                  color: AppColorSchemes.blue1,
                   fontSize: 28,
+                  fontFamily: 'Poppins',
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ],
           ),
-          backgroundColor: Color((0xFFE8F0F2)),
+          backgroundColor: AppColorSchemes.white,
           automaticallyImplyLeading: false,
           actions: [
             GestureDetector(
@@ -85,7 +85,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(50), topLeft: Radius.circular(50)),
-              color: Color(0xFF053742)),
+              color: AppColorSchemes.blue1),
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: FutureBuilder(
@@ -98,14 +98,17 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       children: [
                         FaIcon(
                           FontAwesomeIcons.frownOpen,
-                          color: Colors.white,
+                          color: AppColorSchemes.white,
                         ),
                         SizedBox(
                           width: 10.0,
                         ),
                         Text(
                           'No like lyrics',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: AppColorSchemes.white,
+                            fontFamily: 'Poppins',
+                          ),
                         )
                       ],
                     ));

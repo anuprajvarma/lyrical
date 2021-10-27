@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/lyricsScreen.dart';
 
 class LikeCard extends StatelessWidget {
@@ -17,11 +18,10 @@ class LikeCard extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Container(
           child: Container(
-            height: 200,
             padding: EdgeInsets.all(16),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Color(0xFF0F4C61)),
+                color: AppColorSchemes.blue2),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -29,7 +29,7 @@ class LikeCard extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.person,
-                      color: Color(0xFF2C88B6),
+                      color: AppColorSchemes.blue3,
                     ),
                     SizedBox(
                       width: 10,
@@ -39,7 +39,11 @@ class LikeCard extends StatelessWidget {
                         artist,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+                        style: TextStyle(
+                          color: AppColorSchemes.white,
+                          fontSize: 15,
+                          fontFamily: 'Poppins',
+                        ),
                       ),
                     ),
                   ],
@@ -51,7 +55,7 @@ class LikeCard extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.headphones,
-                      color: Color(0xFF2C88B6),
+                      color: AppColorSchemes.blue3,
                     ),
                     SizedBox(
                       width: 10,
@@ -61,7 +65,11 @@ class LikeCard extends StatelessWidget {
                         title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+                        style: TextStyle(
+                          color: AppColorSchemes.white,
+                          fontSize: 15,
+                          fontFamily: 'Poppins',
+                        ),
                       ),
                     ),
                   ],

@@ -42,6 +42,7 @@ dependencies:
   firebase_database: ^8.0.0
   firebase_database_web: ^0.1.0
   animated_splash_screen: ^1.1.0
+  google_fonts: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -59,4 +60,9 @@ flutter:
     - images/lyrics_logo.jpg
     - images/register.png
     - images/loginpage.png
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/Poppins-Regular.ttf   
  

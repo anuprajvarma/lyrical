@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/historyScreen.dart';
 import 'package:lyrical/screens/likesScreen.dart';
 import 'package:lyrical/screens/homeScreen.dart';
@@ -26,9 +27,9 @@ class _MainAppNavigationState extends State<MainAppNavigation> {
       body: Screen[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Color(0xFF053742),
-        selectedItemColor: Color((0xFF39A2DB)),
-        unselectedItemColor: Color(0xFF2C88B6),
+        backgroundColor: AppColorSchemes.blue1,
+        selectedItemColor: AppColorSchemes.blue4,
+        unselectedItemColor: AppColorSchemes.blue3,
         iconSize: 35,
         selectedFontSize: 15,
         items: [

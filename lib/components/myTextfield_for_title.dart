@@ -39,6 +39,7 @@ class MyTextField_title extends StatelessWidget {
                   hintStyle: TextStyle(
                       color: Color(0xFF457585),
                       fontSize: 20,
+                      fontFamily: 'Poppins',
                       fontWeight: FontWeight.w500),
                   fillColor: Colors.white,
                   hintText: hintString,

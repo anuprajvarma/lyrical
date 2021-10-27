@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lyrical/constant/colorSchemes.dart';
 
 class MyTextField_artist extends StatelessWidget {
   String hintString;
@@ -39,12 +40,13 @@ class MyTextField_artist extends StatelessWidget {
                   hintStyle: TextStyle(
                       color: Color(0xFF457585),
                       fontSize: 20,
+                      fontFamily: 'Poppins',
                       fontWeight: FontWeight.w500),
-                  fillColor: Colors.white,
+                  fillColor: AppColorSchemes.white,
                   hintText: hintString,
                 ),
                 style: TextStyle(
-                    color: Colors.white,
+                    color: AppColorSchemes.white,
                     fontSize: 20,
                     fontWeight: FontWeight.w500),
               ),

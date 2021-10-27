@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:lyrical/components/myTextfield_for_artist.dart';
 import 'package:lyrical/components/myTextfield_for_title.dart';
+import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/firebase/addHistory.dart';
 
 import 'package:lyrical/screens/lyricsScreen.dart';
@@ -30,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFFE8F0F2),
+      color: AppColorSchemes.white,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -40,20 +41,21 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Icon(
                 Icons.search,
-                color: Color(0xFF053742),
+                color: AppColorSchemes.blue1,
                 size: 40,
               ),
               Text(
                 'Search Lyrics',
                 style: TextStyle(
-                  color: Color(0xFF053742),
+                  color: AppColorSchemes.blue1,
                   fontSize: 28,
+                  fontFamily: 'Poppins',
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ],
           ),
-          backgroundColor: Color(0xFFE8F0F2),
+          backgroundColor: AppColorSchemes.white,
           automaticallyImplyLeading: false,
           actions: [
             GestureDetector(
@@ -78,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(50), topLeft: Radius.circular(50)),
-              color: Color(0xFF053742)),
+              color: AppColorSchemes.blue1),
           child: Column(
             children: [
               SizedBox(
@@ -97,8 +99,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               // SizedBox(height: 5),
-              MaterialButton(
-                onPressed: () {
+              GestureDetector(
+                onTap: () {
                   addHistory(artist, title);
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return LyricsScreen(
@@ -112,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 55,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Color(0xFF39A2DB),
+                    color: AppColorSchemes.blue4,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -120,14 +122,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       Icon(
                         FontAwesomeIcons.music,
                         size: 20,
-                        color: Color(0xFF053742),
+                        color: AppColorSchemes.blue1,
                       ),
                       SizedBox(width: 10),
                       Text(
                         'Get Lyrics',
                         style: TextStyle(
-                            color: Color((0xFF053742)),
+                            color: AppColorSchemes.blue1,
                             fontSize: 15,
+                            fontFamily: 'Poppins',
                             fontWeight: FontWeight.bold),
                       ),
                     ],

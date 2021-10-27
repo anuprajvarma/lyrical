@@ -35,6 +35,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   'Lyrical',
                   style: TextStyle(
                     fontSize: 50,
+                    fontFamily: 'Poppins',
                     color: Colors.white,
                   ),
                 )

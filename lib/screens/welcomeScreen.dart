@@ -29,7 +29,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 SizedBox(width: 95),
                 TypewriterAnimatedTextKit(
                   text: ['Lyrical'],
-                  textStyle: TextStyle(color: Colors.white, fontSize: 50),
+                  textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 50,
+                    fontFamily: 'Poppins',
+                  ),
                   speed: const Duration(milliseconds: 100),
                   totalRepeatCount: 1,
                 ),

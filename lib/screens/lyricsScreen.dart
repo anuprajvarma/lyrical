@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/firebase/addLike.dart';
 import 'package:lyrical/firebase/checkLike.dart';
 import 'dart:convert';
@@ -34,14 +35,6 @@ class _LyricsScreenState extends State<LyricsScreen> {
   var fillColor;
   String lyric = '';
 
-  void Likes() {
-    if (isLiked == true) {
-      fillColor = Colors.green;
-    } else {
-      fillColor = Colors.white;
-    }
-  }
-
   Future Apicall() async {
     http.Response response =
         await http.get(Uri.parse('https://api.lyrics.ovh/v1/$artist/$title'));
@@ -67,7 +60,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFFE8F0F2),
+      color: AppColorSchemes.white,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -78,7 +71,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
               Icon(
                 FontAwesomeIcons.music,
                 size: 25,
-                color: Color(0xFF053742),
+                color: AppColorSchemes.blue1,
               ),
               SizedBox(
                 width: 10,
@@ -86,7 +79,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
               Text(
                 'Lyrics',
                 style: TextStyle(
-                  color: Color(0xFF053742),
+                  color: AppColorSchemes.blue1,
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
@@ -94,7 +87,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
             ],
           ),
           automaticallyImplyLeading: false,
-          backgroundColor: Color(0xFFE8F0F2),
+          backgroundColor: AppColorSchemes.white,
           actions: [
             isLiked
                 ? IconButton(
@@ -148,7 +141,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(50), topLeft: Radius.circular(50)),
-              color: Color(0xFF053742)),
+              color: AppColorSchemes.blue1),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -162,7 +155,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                   width: 350,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Color(0xFF0F4C61),
+                    color: AppColorSchemes.blue2,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -170,7 +163,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                       children: [
                         Icon(
                           Icons.person,
-                          color: Color(0xFF2C88B6),
+                          color: AppColorSchemes.blue3,
                         ),
                         SizedBox(
                           width: 20,
@@ -178,8 +171,9 @@ class _LyricsScreenState extends State<LyricsScreen> {
                         Text(
                           artist,
                           style: TextStyle(
-                            color: Color(0xFFE8F0F2),
+                            color: AppColorSchemes.white,
                             fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins',
                             fontSize: 18,
                           ),
                         ),
@@ -193,7 +187,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                   width: 350,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Color(0xFF0F4C61),
+                    color: AppColorSchemes.blue2,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -201,7 +195,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                       children: [
                         Icon(
                           Icons.headphones,
-                          color: Color(0xFF2C88B6),
+                          color: AppColorSchemes.blue3,
                         ),
                         SizedBox(
                           width: 15,
@@ -209,7 +203,8 @@ class _LyricsScreenState extends State<LyricsScreen> {
                         Text(
                           title,
                           style: TextStyle(
-                            color: Color(0xFFE8F0F2),
+                            color: AppColorSchemes.white,
+                            fontFamily: 'Poppins',
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
                           ),
@@ -227,7 +222,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                       height: 580,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Color(0xFF0F4C61),
+                        color: AppColorSchemes.blue2,
                       ),
                       child: Column(
                         children: [
@@ -238,7 +233,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                                 Icon(
                                   FontAwesomeIcons.music,
                                   size: 25,
-                                  color: Color(0xFF2C88B6),
+                                  color: AppColorSchemes.blue3,
                                 ),
                                 SizedBox(
                                   width: 20,
@@ -246,8 +241,9 @@ class _LyricsScreenState extends State<LyricsScreen> {
                                 Text(
                                   'Lyrics',
                                   style: TextStyle(
-                                    color: Color(0xFFE8F0F2),
+                                    color: AppColorSchemes.white,
                                     fontWeight: FontWeight.bold,
+                                    fontFamily: 'Poppins',
                                     fontSize: 18,
                                   ),
                                 ),
@@ -265,8 +261,9 @@ class _LyricsScreenState extends State<LyricsScreen> {
                               child: Text(
                                 lyric.toString(),
                                 style: TextStyle(
-                                  color: Color(0xFFE8F0F2),
+                                  color: AppColorSchemes.white,
                                   fontSize: 17.0,
+                                  fontFamily: 'Poppins',
                                   wordSpacing: 3,
                                 ),
                               ),
