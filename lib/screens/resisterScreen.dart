@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lyrical/constant/colorSchemes.dart';
+import 'package:lyrical/screens/loginScreen.dart';
 
 import 'package:lyrical/screens/mainAppNavigation%5C.dart';
 import 'package:lyrical/components/myButton.dart';
@@ -21,72 +23,122 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff000000),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              children: [
-                SizedBox(width: 87),
-                Text(
-                  'Lyrical',
-                  style: TextStyle(
-                    fontSize: 50,
-                    fontFamily: 'Poppins',
-                    color: Colors.white,
-                  ),
-                )
-              ],
+      backgroundColor: AppColorSchemes.white,
+      body: Column(
+        children: [
+          Container(
+            height: 200,
+            width: 500,
+            decoration: BoxDecoration(color: AppColorSchemes.white),
+            padding: EdgeInsets.only(left: 20, top: 50),
+            child: Text(
+              'Lets start with\nRegister!',
+              style: TextStyle(
+                color: AppColorSchemes.blue1,
+                fontSize: 33,
+                fontFamily: 'Poppins',
+              ),
             ),
-            SizedBox(height: 48.0),
-            Container(
-              color: Colors.white,
-              child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    email = value;
-                  },
-                  decoration: kTextFieldDecoration.copyWith(
-                      hintText: 'Enter your email'),
-                  style: kSendButtonTextStyle.copyWith(color: Colors.black)),
+          ),
+          Expanded(
+            child: Center(
+              child: Container(
+                width: 500,
+                decoration: BoxDecoration(
+                    color: AppColorSchemes.blue1,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(50),
+                        topLeft: Radius.circular(50))),
+                padding: EdgeInsets.only(top: 80),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 300,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        color: Color(0xFF0F5C61),
+                      ),
+                      child: TextField(
+                          keyboardType: TextInputType.emailAddress,
+                          textAlign: TextAlign.center,
+                          onChanged: (value) {
+                            email = value;
+                          },
+                          decoration: kTextFieldDecoration.copyWith(
+                              hintText: 'Enter your email'),
+                          style: kSendButtonTextStyle.copyWith(
+                              color: Colors.black)),
+                    ),
+                    SizedBox(height: 20.0),
+                    Container(
+                      width: 300,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        color: Color(0xFF0F5C61),
+                      ),
+
+                      child: TextField(
+                          textAlign: TextAlign.center,
+                          onChanged: (value) {
+                            password = value;
+                          },
+                          decoration: kTextFieldDecoration.copyWith(
+                            hintText: 'Enter your password',
+                          ),
+                          style: kSendButtonTextStyle.copyWith(
+                              color: Colors.black)),
+                      //color: Colors.blueAccent,
+                    ),
+                    SizedBox(height: 20),
+                    MyButton(
+                        title: 'Register',
+                        colour: Colors.lightBlueAccent,
+                        onPressed: () async {
+                          try {
+                            final newUser =
+                                await _auth.createUserWithEmailAndPassword(
+                                    email: email, password: password);
+                            if (newUser != null) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          MainAppNavigation()));
+                            }
+                          } catch (e) {
+                            print(e);
+                          }
+                        }),
+                    Row(
+                      //crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Already have an account?',
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: AppColorSchemes.white),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginScreen()),
+                                (route) => false);
+                          },
+                          child: Text('Login'),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
             ),
-            SizedBox(height: 20.0),
-            Container(
-              color: Colors.white,
-              child: TextField(
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    password = value;
-                  },
-                  decoration: kTextFieldDecoration.copyWith(
-                      hintText: 'Enter your password'),
-                  style: kSendButtonTextStyle.copyWith(color: Colors.black)),
-              //color: Colors.blueAccent,
-            ),
-            SizedBox(height: 20),
-            MyButton(
-                title: 'Register',
-                colour: Colors.lightBlueAccent,
-                onPressed: () async {
-                  try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
-                    if (newUser != null) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MainAppNavigation()));
-                    }
-                  } catch (e) {
-                    print(e);
-                  }
-                }),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

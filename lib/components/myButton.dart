@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lyrical/constant/boxShadow.dart';
+import 'package:lyrical/constant/colorSchemes.dart';
 
 class MyButton extends StatelessWidget {
   MyButton(
@@ -18,9 +18,9 @@ class MyButton extends StatelessWidget {
       child: Container(
         width: 300,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            color: Colors.pink[200],
-            boxShadow: customshadow),
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: Color(0xFF39A2DB),
+        ),
         child: MaterialButton(
           onPressed: () {
             Navigator.pushNamed(context, onPressed());
@@ -29,8 +29,9 @@ class MyButton extends StatelessWidget {
           child: Text(
             title,
             style: TextStyle(
-              color: Colors.white,
-            ),
+                color: AppColorSchemes.blue1,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Poppins'),
           ),
         ),
       ),

@@ -95,6 +95,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   if (historys.length == 0) {
                     return Center(
                         child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         FaIcon(
                           FontAwesomeIcons.frownOpen,
@@ -104,7 +106,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           width: 10.0,
                         ),
                         Text(
-                          'No like lyrics',
+                          'No history ',
                           style: TextStyle(
                             color: AppColorSchemes.white,
                             fontFamily: 'Poppins',

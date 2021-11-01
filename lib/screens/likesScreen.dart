@@ -98,6 +98,8 @@ class _LikesScreenState extends State<LikesScreen> {
                   if (likes.length == 0) {
                     return Center(
                         child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         FaIcon(
                           FontAwesomeIcons.frownOpen,

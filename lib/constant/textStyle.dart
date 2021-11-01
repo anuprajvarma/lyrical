@@ -21,13 +21,13 @@ const kTextFieldDecoration = InputDecoration(
   border: InputBorder.none,
   hintText: '',
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-  focusedBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(10)),
-    borderSide: BorderSide(color: Colors.pink, width: 2.0),
-  ),
+  // focusedBorder: OutlineInputBorder(
+  //   borderRadius: BorderRadius.all(Radius.circular(10)),
+  //  borderSide: BorderSide(color: Colors.pink, width: 2.0),
+  // ),
   hintStyle: TextStyle(
-    color: Colors.black,
+    color: Color(0xFF457585),
     fontSize: 16,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
   ),
 );

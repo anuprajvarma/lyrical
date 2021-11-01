@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lyrical/constant/colorSchemes.dart';
 
 import 'package:lyrical/screens/mainAppNavigation%5C.dart';
 import 'package:lyrical/components/myButton.dart';
 import 'package:lyrical/constant/textStyle.dart';
+import 'package:lyrical/screens/resisterScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -19,37 +21,43 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('images/loginpage.png'), fit: BoxFit.cover)),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
-          children: [
-            Container(
-              padding: EdgeInsets.only(left: 35, top: 130),
-              child: Text(
-                'Welcome\nBack',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 33,
-                  fontFamily: 'Poppins',
-                ),
+    return Scaffold(
+      backgroundColor: AppColorSchemes.white,
+      body: Column(
+        children: [
+          Container(
+            height: 200,
+            width: 500,
+            decoration: BoxDecoration(color: AppColorSchemes.white),
+            padding: EdgeInsets.only(left: 20, top: 50),
+            child: Text(
+              'Lets start with\nLogin!',
+              style: TextStyle(
+                color: AppColorSchemes.blue1,
+                fontSize: 33,
+                fontFamily: 'Poppins',
               ),
             ),
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                //crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 48.0),
-                  Center(
-                    child: Container(
+          ),
+          Expanded(
+            child: Center(
+              child: Container(
+                width: 500,
+                decoration: BoxDecoration(
+                    color: AppColorSchemes.blue1,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(50),
+                        topLeft: Radius.circular(50))),
+                padding: EdgeInsets.only(top: 80),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
                       width: 300,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Colors.pink[100],
+                        color: Color(0xFF0F5C61),
                       ),
                       child: TextField(
                           keyboardType: TextInputType.emailAddress,
@@ -62,50 +70,73 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: kSendButtonTextStyle.copyWith(
                               color: Colors.black)),
                     ),
-                  ),
-                  SizedBox(height: 20.0),
-                  Container(
-                    width: 300,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color: Colors.transparent,
-                    ),
+                    SizedBox(height: 20.0),
+                    Container(
+                      width: 300,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        color: Color(0xFF0F5C61),
+                      ),
 
-                    child: TextField(
-                        textAlign: TextAlign.center,
-                        onChanged: (value) {
-                          password = value;
-                        },
-                        decoration: kTextFieldDecoration.copyWith(
-                          hintText: 'Enter your password',
+                      child: TextField(
+                          textAlign: TextAlign.center,
+                          onChanged: (value) {
+                            password = value;
+                          },
+                          decoration: kTextFieldDecoration.copyWith(
+                            hintText: 'Enter your password',
+                          ),
+                          style: kSendButtonTextStyle.copyWith(
+                              color: Colors.black)),
+                      //color: Colors.blueAccent,
+                    ),
+                    SizedBox(height: 20),
+                    MyButton(
+                        title: 'Log In',
+                        colour: Colors.lightBlueAccent,
+                        onPressed: () async {
+                          try {
+                            final user = await _auth.signInWithEmailAndPassword(
+                                email: email, password: password);
+                            if (user != null) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          MainAppNavigation()));
+                            }
+                          } catch (e) {
+                            print(e);
+                          }
+                        }),
+                    Row(
+                      //crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'I dont have an account?',
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: AppColorSchemes.white),
                         ),
-                        style:
-                            kSendButtonTextStyle.copyWith(color: Colors.black)),
-                    //color: Colors.blueAccent,
-                  ),
-                  SizedBox(height: 20),
-                  MyButton(
-                      title: 'Log In',
-                      colour: Colors.lightBlueAccent,
-                      onPressed: () async {
-                        try {
-                          final user = await _auth.signInWithEmailAndPassword(
-                              email: email, password: password);
-                          if (user != null) {
-                            Navigator.push(
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MainAppNavigation()));
-                          }
-                        } catch (e) {
-                          print(e);
-                        }
-                      }),
-                ],
+                                    builder: (context) => RegisterScreen()),
+                                (route) => false);
+                          },
+                          child: Text('Register'),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
