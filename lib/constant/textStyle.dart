@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 const kSendButtonTextStyle = TextStyle(
-  color: Colors.black,
-  fontWeight: FontWeight.w500,
+  color: Colors.white,
+  //fontWeight: FontWeight.w500,
   fontSize: 17.0,
 );
 

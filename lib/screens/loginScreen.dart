@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
@@ -68,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: kTextFieldDecoration.copyWith(
                               hintText: 'Enter your email'),
                           style: kSendButtonTextStyle.copyWith(
-                              color: Colors.black)),
+                              color: Colors.white)),
                     ),
                     SizedBox(height: 20.0),
                     Container(
@@ -87,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             hintText: 'Enter your password',
                           ),
                           style: kSendButtonTextStyle.copyWith(
-                              color: Colors.black)),
+                              color: Colors.white)),
                       //color: Colors.blueAccent,
                     ),
                     SizedBox(height: 20),
@@ -109,26 +110,46 @@ class _LoginScreenState extends State<LoginScreen> {
                             print(e);
                           }
                         }),
-                    Row(
-                      //crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Stack(
                       children: [
-                        Text(
-                          'I dont have an account?',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: AppColorSchemes.white),
+                        Container(
+                          padding: EdgeInsets.only(top: 15, left: 42),
+                          child: Text(
+                            '______________________________________',
+                            style: TextStyle(
+                              color: AppColorSchemes.white,
+                              //fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => RegisterScreen()),
-                                (route) => false);
-                          },
-                          child: Text('Register'),
-                        )
+                        Row(
+                          //crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'I dont have an account?',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  color: AppColorSchemes.white),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => RegisterScreen()),
+                                    (route) => false);
+                              },
+                              child: Text(
+                                'Register',
+                                style: TextStyle(
+                                    color: AppColorSchemes.blue3,
+                                    fontSize: 16,
+                                    fontFamily: 'Poppins'),
+                              ),
+                            )
+                          ],
+                        ),
                       ],
                     )
                   ],

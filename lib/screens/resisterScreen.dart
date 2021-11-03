@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/loginScreen.dart';
-
 import 'package:lyrical/screens/mainAppNavigation%5C.dart';
 import 'package:lyrical/components/myButton.dart';
 import 'package:lyrical/constant/textStyle.dart';
@@ -69,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           decoration: kTextFieldDecoration.copyWith(
                               hintText: 'Enter your email'),
                           style: kSendButtonTextStyle.copyWith(
-                              color: Colors.black)),
+                              color: Colors.white)),
                     ),
                     SizedBox(height: 20.0),
                     Container(
@@ -88,7 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             hintText: 'Enter your password',
                           ),
                           style: kSendButtonTextStyle.copyWith(
-                              color: Colors.black)),
+                              color: Colors.white)),
                       //color: Colors.blueAccent,
                     ),
                     SizedBox(height: 20),
@@ -111,26 +110,46 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             print(e);
                           }
                         }),
-                    Row(
-                      //crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Stack(
                       children: [
-                        Text(
-                          'Already have an account?',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: AppColorSchemes.white),
+                        Container(
+                          padding: EdgeInsets.only(top: 15, left: 46),
+                          child: Text(
+                            '_____________________________________',
+                            style: TextStyle(
+                              color: AppColorSchemes.white,
+                              //fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LoginScreen()),
-                                (route) => false);
-                          },
-                          child: Text('Login'),
-                        )
+                        Row(
+                          //crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Already have an account?',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  color: AppColorSchemes.white),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginScreen()),
+                                    (route) => false);
+                              },
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                    color: AppColorSchemes.blue3,
+                                    fontSize: 16,
+                                    fontFamily: 'Poppins'),
+                              ),
+                            )
+                          ],
+                        ),
                       ],
                     )
                   ],
