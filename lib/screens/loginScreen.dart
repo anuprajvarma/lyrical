@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 
 import 'package:lyrical/screens/mainAppNavigation%5C.dart';
@@ -19,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
   late String email = '';
   late String password = '';
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -92,24 +94,30 @@ class _LoginScreenState extends State<LoginScreen> {
                       //color: Colors.blueAccent,
                     ),
                     SizedBox(height: 20),
-                    MyButton(
-                        title: 'Log In',
-                        colour: Colors.lightBlueAccent,
-                        onPressed: () async {
-                          try {
-                            final user = await _auth.signInWithEmailAndPassword(
-                                email: email, password: password);
-                            if (user != null) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          MainAppNavigation()));
-                            }
-                          } catch (e) {
-                            print(e);
-                          }
-                        }),
+                    isLoading
+                        ? LoadingScreen()
+                        : MyButton(
+                            title: 'Log In',
+                            colour: Colors.lightBlueAccent,
+                            onPressed: () async {
+                              setState(() {
+                                isLoading = true;
+                              });
+                              try {
+                                final user =
+                                    await _auth.signInWithEmailAndPassword(
+                                        email: email, password: password);
+                                if (user != null) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              MainAppNavigation()));
+                                }
+                              } catch (e) {
+                                print(e);
+                              }
+                            }),
                     Stack(
                       children: [
                         Container(
