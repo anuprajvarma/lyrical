@@ -1,13 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final auth = FirebaseAuth.instance;
 
 Future<bool> checkLike(String artist, String title) async {
   var _firestore = FirebaseFirestore.instance;
   bool isLiked = false;
   try {
-    var likesDoc = await _firestore.collection('likes').doc('documents').get();
+    final users = auth.currentUser;
+    final uid = users!.uid;
+    var likesDoc = await _firestore.collection('Users').doc(uid).get();
 
     var mapOfData = likesDoc.data();
-    var likes = mapOfData!['likedLyrics'];
+    var likes = mapOfData!['likedlyrics'];
 
     print(likes);
 

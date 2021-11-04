@@ -6,19 +6,20 @@ final firestore = FirebaseFirestore.instance;
 
 addLike(String artist, String title) async {
   try {
-    var fetchofData =
-        await firestore.collection('likes').doc('documents').get();
+    final users = auth.currentUser;
+    final uid = users!.uid;
+    var fetchofData = await firestore.collection('Users').doc(uid).get();
 
     var mapOfdata = fetchofData.data();
 
-    var listOflikes = mapOfdata!['likedLyrics'];
+    var listOflikes = mapOfdata!['likedlyrics'];
 
     listOflikes.add({"artist": artist, "title": title});
 
     await FirebaseFirestore.instance
-        .collection('likes')
-        .doc('documents')
-        .set({'likedLyrics': listOflikes});
+        .collection('Users')
+        .doc(uid)
+        .set({'likedlyrics': listOflikes});
   } catch (e) {
     print(e);
   }

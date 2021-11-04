@@ -5,20 +5,22 @@ final auth = FirebaseAuth.instance;
 final firestore = FirebaseFirestore.instance;
 
 addHistory(String artist, String title) async {
+  print('anupraj bhot ganda hai');
   try {
-    var fetchofData =
-        await firestore.collection('History').doc('UserHistory').get();
+    final users = auth.currentUser;
+    final uid = users!.uid;
+    var fetchofData = await firestore.collection('Historys').doc(uid).get();
 
     var mapOfdata = fetchofData.data();
 
-    var listOflikes = mapOfdata!['historys'];
+    var listOflikes = mapOfdata!['history'];
 
     listOflikes.add({"artist": artist, "title": title});
 
     await FirebaseFirestore.instance
-        .collection('History')
-        .doc('UserHistory')
-        .set({'historys': listOflikes});
+        .collection('Historys')
+        .doc(uid)
+        .set({'history': listOflikes});
   } catch (e) {
     print(e);
   }

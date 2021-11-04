@@ -1,15 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 final _firestore = FirebaseFirestore.instance;
+final auth = FirebaseAuth.instance;
 
 deleteLike(String artist, String title) async {
   try {
-    var fetchofData =
-        await _firestore.collection('likes').doc('documents').get();
+    final users = auth.currentUser;
+    final uid = users!.uid;
+    var fetchofData = await _firestore.collection('Users').doc(uid).get();
 
     var mapOfdata = fetchofData.data();
 
-    var listOflikes = mapOfdata!['likedLyrics'];
+    var listOflikes = mapOfdata!['likedlyrics'];
 
     var listofNewlikes = [];
 
@@ -25,9 +28,9 @@ deleteLike(String artist, String title) async {
     }
 
     await FirebaseFirestore.instance
-        .collection('likes')
-        .doc('documents')
-        .set({'likedLyrics': listofNewlikes});
+        .collection('Users')
+        .doc(uid)
+        .set({'likedlyrics': listofNewlikes});
   } catch (e) {
     print(e);
   }

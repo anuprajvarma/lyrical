@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
@@ -5,6 +6,8 @@ import 'package:lyrical/screens/loginScreen.dart';
 import 'package:lyrical/screens/mainAppNavigation%5C.dart';
 import 'package:lyrical/components/myButton.dart';
 import 'package:lyrical/constant/textStyle.dart';
+
+final firestore = FirebaseFirestore.instance;
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -99,6 +102,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             final newUser =
                                 await _auth.createUserWithEmailAndPassword(
                                     email: email, password: password);
+
+                            final users = _auth.currentUser;
+                            print('current user addd');
+                            final uid = users!.uid;
+                            print(uid);
+
+                            await firestore
+                                .collection('Users')
+                                .doc(uid)
+                                .set({'likedlyrics': []});
+
+                            await firestore
+                                .collection('Historys')
+                                .doc(uid)
+                                .set({'history': []});
+
                             if (newUser != null) {
                               Navigator.push(
                                   context,

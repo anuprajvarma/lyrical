@@ -1,21 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+final auth = FirebaseAuth.instance;
 Future<List> getlyrics() async {
   Map<String, dynamic>? data;
   try {
-    var fetchData = await FirebaseFirestore.instance
-        .collection('likes')
-        .doc('documents')
-        .get();
+    final users = auth.currentUser;
+    final uid = users!.uid;
+    var fetchData =
+        await FirebaseFirestore.instance.collection('Users').doc(uid).get();
 
     data = fetchData.data();
 
     print(data);
 
-    return data!['likedLyrics'];
+    return data!['likedlyrics'];
   } catch (e) {
     print(e);
 
-    return data!['likedLyrics'];
+    return data!['likedlyrics'];
   }
 }
