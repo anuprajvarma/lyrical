@@ -4,12 +4,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:lyrical/components/loading_screen.dart';
+
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/firebase/addLike.dart';
 import 'package:lyrical/firebase/checkLike.dart';
 import 'dart:convert';
 
 import 'package:lyrical/firebase/deleteLike.dart';
+
 import 'package:lyrical/screens/welcomeScreen.dart';
 
 final auth = FirebaseAuth.instance;
@@ -34,6 +37,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
   bool isLiked = false;
   var fillColor;
   String lyric = '';
+  bool isLoading = true;
 
   Future Apicall() async {
     http.Response response =
@@ -46,6 +50,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
       isLiked = await checkLike(artist, title);
       print(isLiked);
       setState(() {
+        isLoading = false;
         lyric = getdata['lyrics'];
       });
     }
@@ -54,6 +59,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
   @override
   void initState() {
     super.initState();
+    // isLoading = true;
     Apicall();
   }
 
@@ -253,22 +259,24 @@ class _LyricsScreenState extends State<LyricsScreen> {
                           SizedBox(
                             height: 20,
                           ),
-                          Expanded(
-                              child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                lyric.toString(),
-                                style: TextStyle(
-                                  color: AppColorSchemes.white,
-                                  fontSize: 17.0,
-                                  fontFamily: 'Poppins',
-                                  wordSpacing: 3,
-                                ),
-                              ),
-                            ),
-                          ))
+                          isLoading
+                              ? LoadingScreen()
+                              : Expanded(
+                                  child: SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      lyric.toString(),
+                                      style: TextStyle(
+                                        color: AppColorSchemes.white,
+                                        fontSize: 17.0,
+                                        fontFamily: 'Poppins',
+                                        wordSpacing: 3,
+                                      ),
+                                    ),
+                                  ),
+                                ))
                         ],
                       )),
                 ),
