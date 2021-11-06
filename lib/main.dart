@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           ),
           nextScreen: WelcomeScreen(),
           backgroundColor: Colors.black,
-          splashIconSize: 200,
+          splashIconSize: 1000,
           splashTransition: SplashTransition.fadeTransition),
     );
   }
