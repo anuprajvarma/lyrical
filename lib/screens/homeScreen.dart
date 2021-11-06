@@ -102,6 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
               GestureDetector(
                 onTap: () {
                   addHistory(artist, title);
+
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return LyricsScreen(
                       artist: artist,
