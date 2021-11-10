@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Expanded(
             child: Center(
               child: Container(
-                width: 500,
+                width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: AppColorSchemes.blue1,
                     borderRadius: BorderRadius.only(
