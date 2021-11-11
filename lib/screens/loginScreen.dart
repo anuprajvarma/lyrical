@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lyrical/auth/loginPage.dart';
 import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/mainAppNavigation%5C.dart';
@@ -102,20 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               setState(() {
                                 isLoading = true;
                               });
-                              try {
-                                final user =
-                                    await _auth.signInWithEmailAndPassword(
-                                        email: email, password: password);
-                                if (user != null) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              MainAppNavigation()));
-                                }
-                              } catch (e) {
-                                print(e);
-                              }
+                              loginPage(email, password, context);
                             }),
                     Stack(
                       children: [
