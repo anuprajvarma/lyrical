@@ -25,7 +25,7 @@ class MyButton extends StatelessWidget {
           onPressed: () {
             Navigator.pushNamed(context, onPressed());
           },
-          height: 16.0,
+          height: 50.0,
           child: Text(
             title,
             style: TextStyle(

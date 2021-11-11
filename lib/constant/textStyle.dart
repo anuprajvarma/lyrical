@@ -20,6 +20,7 @@ const kMessageContainerDecoration = BoxDecoration(
 const kTextFieldDecoration = InputDecoration(
   border: InputBorder.none,
   hintText: '',
+
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   // focusedBorder: OutlineInputBorder(
   //   borderRadius: BorderRadius.all(Radius.circular(10)),

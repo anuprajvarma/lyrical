@@ -16,6 +16,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
   final _auth = FirebaseAuth.instance;
   late String email = '';
   late String password = '';
@@ -42,57 +43,99 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           Expanded(
-            child: Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    color: AppColorSchemes.blue1,
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(50),
-                        topLeft: Radius.circular(50))),
-                padding: EdgeInsets.only(top: 80),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  color: AppColorSchemes.blue1,
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(50),
+                      topLeft: Radius.circular(50))),
+              padding: EdgeInsets.only(top: 50),
+              child: Form(
+                key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: 300,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Color(0xFF0F5C61),
-                      ),
-                      child: TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          textAlign: TextAlign.center,
-                          onChanged: (value) {
-                            email = value;
-                          },
-                          decoration: kTextFieldDecoration.copyWith(
-                              hintText: 'Enter your email'),
-                          style: kSendButtonTextStyle.copyWith(
-                              color: Colors.white)),
-                    ),
-                    SizedBox(height: 20.0),
-                    Container(
-                      width: 300,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Color(0xFF0F5C61),
-                      ),
-
-                      child: TextField(
-                          textAlign: TextAlign.center,
-                          obscureText: true,
-                          onChanged: (value) {
-                            password = value;
-                          },
-                          decoration: kTextFieldDecoration.copyWith(
-                            hintText: 'Enter your password',
+                    TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (key) {
+                          if (key == null || !key.contains('@')) {
+                            return 'Please Enter your email';
+                          }
+                          return null;
+                        },
+                        textAlign: TextAlign.center,
+                        onChanged: (value) {
+                          email = value;
+                        },
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xFF0F5C61),
+                          constraints:
+                              BoxConstraints(maxHeight: 100, maxWidth: 300),
+                          border: OutlineInputBorder(),
+                          hintText: 'Enter your Email',
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 5.0, horizontal: 20.0),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              borderSide:
+                                  BorderSide(color: AppColorSchemes.blue1)),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(
+                                color: AppColorSchemes.blue4, width: 1.5),
                           ),
-                          style: kSendButtonTextStyle.copyWith(
-                              color: Colors.white)),
-                      //color: Colors.blueAccent,
-                    ),
+                          hintStyle: TextStyle(
+                            color: Color(0xFF457585),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        style:
+                            kSendButtonTextStyle.copyWith(color: Colors.white)),
+                    SizedBox(height: 20.0),
+                    TextFormField(
+                        textAlign: TextAlign.center,
+                        obscureText: true,
+                        validator: (key) {
+                          if (key!.length < 4) {
+                            return 'Enter at least 4 character';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          password = value;
+                        },
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xFF0F5C61),
+                          constraints:
+                              BoxConstraints(maxHeight: 100, maxWidth: 300),
+                          border: OutlineInputBorder(),
+                          hintText: 'Enter your password',
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 5.0, horizontal: 20.0),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              borderSide:
+                                  BorderSide(color: AppColorSchemes.blue1)),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(
+                                color: AppColorSchemes.blue4, width: 1.5),
+                          ),
+                          hintStyle: TextStyle(
+                            color: Color(0xFF457585),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        style:
+                            kSendButtonTextStyle.copyWith(color: Colors.white)),
                     SizedBox(height: 20),
                     isLoading
                         ? LoadingScreen()
@@ -100,9 +143,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             title: 'Log In',
                             colour: Colors.lightBlueAccent,
                             onPressed: () async {
-                              setState(() {
-                                isLoading = true;
-                              });
+                              if (_formKey.currentState!.validate()) {
+                                setState(() {
+                                  isLoading = true;
+                                });
+                              }
                               loginPage(email, password, context);
                             }),
                     Stack(
