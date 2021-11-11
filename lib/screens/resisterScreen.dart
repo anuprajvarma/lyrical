@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lyrical/auth/resisterPage.dart';
 import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/loginScreen.dart';
@@ -104,36 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               setState(() {
                                 isLoading = true;
                               });
-                              try {
-                                final newUser =
-                                    await _auth.createUserWithEmailAndPassword(
-                                        email: email, password: password);
-
-                                final users = _auth.currentUser;
-                                print('current user addd');
-                                final uid = users!.uid;
-                                print(uid);
-
-                                await firestore
-                                    .collection('Users')
-                                    .doc(uid)
-                                    .set({'likedlyrics': []});
-
-                                await firestore
-                                    .collection('Historys')
-                                    .doc(uid)
-                                    .set({'history': []});
-
-                                if (newUser != null) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              MainAppNavigation()));
-                                }
-                              } catch (e) {
-                                print(e);
-                              }
+                              register(email, password, context);
                             }),
                     Stack(
                       children: [
