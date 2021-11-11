@@ -23,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool status = false;
   late String title;
   late String artist;
+  final mycontroller = TextEditingController();
 
   get person => null;
 
@@ -102,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
               GestureDetector(
                 onTap: () {
                   addHistory(artist, title);
-
+                  mycontroller.clear();
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return LyricsScreen(
                       artist: artist,

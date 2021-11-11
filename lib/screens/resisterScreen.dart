@@ -82,7 +82,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         color: Color(0xFF0F5C61),
                       ),
-
                       child: TextField(
                           textAlign: TextAlign.center,
                           obscureText: true,
@@ -94,7 +93,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           style: kSendButtonTextStyle.copyWith(
                               color: Colors.white)),
-                      //color: Colors.blueAccent,
                     ),
                     SizedBox(height: 20),
                     isLoading

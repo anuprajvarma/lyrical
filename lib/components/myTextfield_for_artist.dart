@@ -2,12 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 
-class MyTextField_artist extends StatelessWidget {
+class MyTextField_artist extends StatefulWidget {
   String hintString;
-
+  var mycontroller = TextEditingController();
   void Function(String)? onChanged;
 
   MyTextField_artist({this.hintString = '', this.onChanged});
+
+  @override
+  State<MyTextField_artist> createState() => _MyTextField_artistState();
+}
+
+class _MyTextField_artistState extends State<MyTextField_artist> {
+  //var mycontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +41,8 @@ class MyTextField_artist extends StatelessWidget {
             Expanded(
               child: TextField(
                 autofocus: false,
-                onChanged: onChanged,
+                // controller: mycontroller,
+                onChanged: widget.onChanged,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintStyle: TextStyle(
@@ -43,7 +51,7 @@ class MyTextField_artist extends StatelessWidget {
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w500),
                   fillColor: AppColorSchemes.white,
-                  hintText: hintString,
+                  hintText: widget.hintString,
                 ),
                 style: TextStyle(
                     color: AppColorSchemes.white,
