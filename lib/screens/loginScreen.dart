@@ -81,6 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       child: TextField(
                           textAlign: TextAlign.center,
+                          obscureText: true,
                           onChanged: (value) {
                             password = value;
                           },

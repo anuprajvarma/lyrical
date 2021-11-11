@@ -85,6 +85,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       child: TextField(
                           textAlign: TextAlign.center,
+                          obscureText: true,
                           onChanged: (value) {
                             password = value;
                           },
