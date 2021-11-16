@@ -19,7 +19,6 @@ class HistoryScreen extends StatefulWidget {
 
 class _HistoryScreenState extends State<HistoryScreen> {
   List historys = [];
-
   List<Widget> historyCards = [];
 
   readyLyrics() async {
