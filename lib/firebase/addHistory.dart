@@ -5,7 +5,7 @@ final auth = FirebaseAuth.instance;
 final firestore = FirebaseFirestore.instance;
 
 addHistory(String artist, String title) async {
-  print('anupraj bhot ganda hai');
+  // print('anupraj bhot ganda hai');
   try {
     final users = auth.currentUser;
     final uid = users!.uid;

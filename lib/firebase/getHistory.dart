@@ -12,12 +12,14 @@ Future<List> gethistory() async {
 
     data = fetchData.data();
 
-    print(data);
+    //print(data);
 
-    return data!['history'];
+    //return data!['history'];
   } catch (e) {
     print(e);
 
-    return data!['history'];
+    //return data!['history'];
   }
+
+  return data!['history'];
 }

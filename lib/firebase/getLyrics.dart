@@ -12,7 +12,7 @@ Future<List> getlyrics() async {
 
     data = fetchData.data();
 
-    print(data);
+    // print(data);
 
     return data!['likedlyrics'];
   } catch (e) {

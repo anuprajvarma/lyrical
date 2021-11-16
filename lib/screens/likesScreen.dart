@@ -19,8 +19,8 @@ class LikesScreen extends StatefulWidget {
 }
 
 class _LikesScreenState extends State<LikesScreen> {
+  //late Future myFuture;
   List likes = [];
-
   List<Widget> likeCards = [];
 
   readyLyrics() async {

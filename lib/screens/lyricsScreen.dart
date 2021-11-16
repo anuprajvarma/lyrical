@@ -47,7 +47,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
       var getdata = json.decode(response.body);
 
       //print(artist + " " + title);
-      // isLiked = await checkLike(artist, title);
+      isLiked = await checkLike(artist, title);
       // print(isLiked);
       setState(() {
         isLoading = false;
@@ -111,7 +111,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                   )
                 : IconButton(
                     onPressed: () async {
-                      isLiked = await checkLike(artist, title);
+                      //isLiked = await checkLike(artist, title);
                       if (isLiked == false) {
                         addLike(artist, title);
                       }

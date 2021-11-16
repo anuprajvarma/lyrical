@@ -14,7 +14,7 @@ Future<bool> checkLike(String artist, String title) async {
     var mapOfData = likesDoc.data();
     var likes = mapOfData!['likedlyrics'];
 
-    print(likes);
+    // print(likes);
 
     for (var like in likes) {
       print(like);

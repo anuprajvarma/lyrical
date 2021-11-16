@@ -23,7 +23,7 @@ deleteLike(String artist, String title) async {
         //await _firestore.collection('likes').doc('documents').delete();
       } else {
         listofNewlikes.add(listOflikes[i]);
-        print('yuvraj is bhadwa');
+        // print('yuvraj is bhadwa');
       }
     }
 
