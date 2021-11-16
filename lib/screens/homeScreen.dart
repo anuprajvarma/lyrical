@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
               // SizedBox(height: 5),
               GestureDetector(
                 onTap: () {
-                  //addHistory(artist, title);
+                  addHistory(artist, title);
                   mycontroller.clear();
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return LyricsScreen(
