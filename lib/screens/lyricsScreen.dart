@@ -46,9 +46,9 @@ class _LyricsScreenState extends State<LyricsScreen> {
     if (response.statusCode == 200) {
       var getdata = json.decode(response.body);
 
-      print(artist + " " + title);
-      isLiked = await checkLike(artist, title);
-      print(isLiked);
+      //print(artist + " " + title);
+      // isLiked = await checkLike(artist, title);
+      // print(isLiked);
       setState(() {
         isLoading = false;
         lyric = getdata['lyrics'];
