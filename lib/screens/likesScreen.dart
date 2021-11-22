@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/firebase/getLyrics.dart';
-import 'package:lyrical/components/LikeCard.dart';
+import 'package:lyrical/components/Card.dart';
 import 'package:lyrical/screens/welcomeScreen.dart';
 
 final _auth = FirebaseAuth.instance;
@@ -27,8 +27,8 @@ class _LikesScreenState extends State<LikesScreen> {
     likes = await getlyrics();
 
     for (int i = 0; i < likes.length; i++) {
-      likeCards
-          .add(LikeCard(artist: likes[i]['artist'], title: likes[i]['title']));
+      likeCards.add(
+          CardScreen(artist: likes[i]['artist'], title: likes[i]['title']));
     }
   }
 

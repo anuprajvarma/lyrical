@@ -52,6 +52,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
       setState(() {
         isLoading = false;
         lyric = getdata['lyrics'];
+        //print(lyric);
       });
     }
   }

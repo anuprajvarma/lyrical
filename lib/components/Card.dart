@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/lyricsScreen.dart';
 
-class LikeCard extends StatelessWidget {
+class CardScreen extends StatelessWidget {
   final String artist;
   final String title;
 
-  LikeCard(
+  CardScreen(
       {this.artist =
           'My note.kjadfgegfilasfnfvkjasklvbliaslkljdafvbadfi;vjlksfbvjliulfvjhafsbvkjlb',
       this.title = 'Note title'});
