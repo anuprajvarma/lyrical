@@ -5,14 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:lyrical/components/loading_screen.dart';
-
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/firebase/addLike.dart';
 import 'package:lyrical/firebase/checkLike.dart';
 import 'dart:convert';
-
 import 'package:lyrical/firebase/deleteLike.dart';
-
 import 'package:lyrical/screens/welcomeScreen.dart';
 
 final auth = FirebaseAuth.instance;

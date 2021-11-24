@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
+import 'package:lyrical/firebase/addHistory.dart';
 import 'package:lyrical/screens/lyricsScreen.dart';
 
 class CardScreen extends StatelessWidget {
@@ -80,6 +81,8 @@ class CardScreen extends StatelessWidget {
         ),
       ),
       onTap: () {
+        print(artist);
+        addHistory(artist, title);
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return LyricsScreen(artist: artist, title: title);
         }));

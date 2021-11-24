@@ -2,49 +2,55 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:lyrical/components/Card.dart';
-import 'package:lyrical/components/myTextfield_for_artist.dart';
-import 'package:lyrical/components/myTextfield_for_title.dart';
+
 import 'package:lyrical/constant/colorSchemes.dart';
-import 'package:lyrical/screens/newhomeScreen1.dart';
-import 'package:lyrical/screens/newhomeScreen3.dart';
 import 'package:lyrical/screens/welcomeScreen.dart';
 import 'dart:convert';
 
 final _auth = FirebaseAuth.instance;
 final firestore = FirebaseFirestore.instance;
 
-class HomeScreen1 extends StatefulWidget {
+class HomeScreen3 extends StatefulWidget {
+  String lyrics_name;
+
+  HomeScreen3({this.lyrics_name = ''});
+
   @override
-  _HomeScreenState1 createState() => _HomeScreenState1();
+  _HomeScreenState3 createState() =>
+      _HomeScreenState3(lyrics_name: lyrics_name);
 }
 
-class _HomeScreenState1 extends State<HomeScreen1> {
+class _HomeScreenState3 extends State<HomeScreen3> {
   var fc53f4361ba7e110bac6bca264924af0;
   var title;
   var artist;
   List<Widget> card = [];
-  late String title_name = '';
-  late String lyrics_name = '';
+  String lyrics_name;
+
+  _HomeScreenState3({this.lyrics_name = ''});
 
   Future getUserdata() async {
     http.Response response = await http.get(Uri.parse(
-        'https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=5&country=us&f_has_lyrics=1&apikey=fc53f4361ba7e110bac6bca264924af0'));
+        'https://api.musixmatch.com/ws/1.1/track.search?q_lyrics=$lyrics_name&page_size=10&page=1&s_track_rating=desc&apikey=fc53f4361ba7e110bac6bca264924af0'));
 
     if (response.statusCode == 200) {
       var getdata = json.decode(response.body);
 
       card = [];
 
-      for (int i = 0; i < 5; i++) {
+      for (int i = 0; i < 10; i++) {
         card.add(CardScreen(
           artist: getdata['message']['body']['track_list'][i]['track']
               ['artist_name'],
           title: getdata['message']['body']['track_list'][i]['track']
               ['track_name'],
         ));
+        //print(artist);
+        print('hiiii');
+        print(lyrics_name);
       }
     }
     //return artist;
@@ -119,68 +125,6 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                             SizedBox(
                               height: 40,
                             ),
-                            MyTextField_artist(
-                              hintString: 'Search   title',
-                              onChanged: (value) {
-                                title_name = value;
-                              },
-                            ),
-                            MyTextField_title(
-                              hintString: 'Search  lyrics ',
-                              onChanged: (val) {
-                                lyrics_name = val;
-                              },
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                print('hiii');
-                                if (title_name != '') {
-                                  if (lyrics_name == '') {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return HomeScreen2(
-                                          title_name: title_name);
-                                    }));
-                                  }
-                                } else if (lyrics_name != '') {
-                                  if (title_name == '') {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return HomeScreen3(
-                                          lyrics_name: lyrics_name);
-                                    }));
-                                  }
-                                }
-                              },
-                              child: Container(
-                                width: 180,
-                                height: 55,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: AppColorSchemes.blue4,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      FontAwesomeIcons.music,
-                                      size: 20,
-                                      color: AppColorSchemes.blue1,
-                                    ),
-                                    SizedBox(width: 10),
-                                    Text(
-                                      'Get Lyrics',
-                                      style: TextStyle(
-                                          color: AppColorSchemes.blue1,
-                                          fontSize: 15,
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 10),
                             Expanded(
                               child: GridView.count(
                                 crossAxisCount: 2,
