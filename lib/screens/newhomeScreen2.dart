@@ -13,28 +13,27 @@ import 'dart:convert';
 final _auth = FirebaseAuth.instance;
 final firestore = FirebaseFirestore.instance;
 
-class HomeScreen3 extends StatefulWidget {
-  String lyrics_name;
+class HomeScreen2 extends StatefulWidget {
+  String title_name;
 
-  HomeScreen3({this.lyrics_name = ''});
+  HomeScreen2({this.title_name = ''});
 
   @override
-  _HomeScreenState3 createState() =>
-      _HomeScreenState3(lyrics_name: lyrics_name);
+  _HomeScreenState2 createState() => _HomeScreenState2(title_name: title_name);
 }
 
-class _HomeScreenState3 extends State<HomeScreen3> {
+class _HomeScreenState2 extends State<HomeScreen2> {
   var fc53f4361ba7e110bac6bca264924af0;
   var title;
   var artist;
   List<Widget> card = [];
-  String lyrics_name;
+  String title_name;
 
-  _HomeScreenState3({this.lyrics_name = ''});
+  _HomeScreenState2({this.title_name = ''});
 
   Future getUserdata() async {
     http.Response response = await http.get(Uri.parse(
-        'https://api.musixmatch.com/ws/1.1/track.search?q_lyrics=$lyrics_name&page_size=10&page=1&s_track_rating=desc&apikey=fc53f4361ba7e110bac6bca264924af0'));
+        'https://api.musixmatch.com/ws/1.1/track.search?q_track=$title_name&page_size=10&page=1&s_track_rating=desc&apikey=163e1abd7bbc2378eb53f8df62d7478a'));
 
     if (response.statusCode == 200) {
       var getdata = json.decode(response.body);
@@ -50,7 +49,7 @@ class _HomeScreenState3 extends State<HomeScreen3> {
         ));
         //print(artist);
         print('hiiii');
-        print(lyrics_name);
+        print(title_name);
       }
     }
     //return artist;

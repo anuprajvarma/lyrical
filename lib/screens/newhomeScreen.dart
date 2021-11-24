@@ -8,8 +8,9 @@ import 'package:lyrical/components/Card.dart';
 import 'package:lyrical/components/myTextfield_for_artist.dart';
 import 'package:lyrical/components/myTextfield_for_title.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
-import 'package:lyrical/screens/newhomeScreen1.dart';
 import 'package:lyrical/screens/newhomeScreen3.dart';
+import 'package:lyrical/screens/newhomeScreen2.dart';
+
 import 'package:lyrical/screens/welcomeScreen.dart';
 import 'dart:convert';
 
@@ -31,10 +32,11 @@ class _HomeScreenState1 extends State<HomeScreen1> {
 
   Future getUserdata() async {
     http.Response response = await http.get(Uri.parse(
-        'https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=5&country=us&f_has_lyrics=1&apikey=fc53f4361ba7e110bac6bca264924af0'));
+        'https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=5&country=us&f_has_lyrics=1&apikey=163e1abd7bbc2378eb53f8df62d7478a'));
 
     if (response.statusCode == 200) {
       var getdata = json.decode(response.body);
+      print(getdata);
 
       card = [];
 
@@ -46,6 +48,8 @@ class _HomeScreenState1 extends State<HomeScreen1> {
               ['track_name'],
         ));
       }
+    } else {
+      print('401');
     }
     //return artist;
   }
