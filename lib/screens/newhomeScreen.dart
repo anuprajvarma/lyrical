@@ -11,8 +11,9 @@ import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/newhomeScreen3.dart';
 import 'package:lyrical/screens/newhomeScreen2.dart';
 
-import 'package:lyrical/screens/welcomeScreen.dart';
 import 'dart:convert';
+
+import 'package:lyrical/screens/welcomeScreen.dart';
 
 final _auth = FirebaseAuth.instance;
 final firestore = FirebaseFirestore.instance;
@@ -87,21 +88,34 @@ class _HomeScreenState1 extends State<HomeScreen1> {
             backgroundColor: AppColorSchemes.white,
             automaticallyImplyLeading: false,
             actions: [
-              GestureDetector(
-                onTap: () {
-                  _auth.signOut();
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => WelcomeScreen()));
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.logout,
-                    color: Color((0xFF0C1136)),
-                    size: 25,
-                  ),
-                ),
-              ),
+              Theme(
+                data: Theme.of(context).copyWith(
+                    iconTheme: IconThemeData(color: AppColorSchemes.blue1)),
+                child: PopupMenuButton<int>(
+                    padding: EdgeInsets.all(20),
+                    color: Colors.red,
+                    onSelected: (item) => onSelected(context, item),
+                    itemBuilder: (context) => [
+                          PopupMenuItem<int>(
+                              value: 0,
+                              child: Row(
+                                children: [
+                                  Icon(Icons.logout,
+                                      color: AppColorSchemes.white),
+                                  SizedBox(width: 3),
+                                  Text(
+                                    'Sign Out',
+                                    style: TextStyle(
+                                      color: AppColorSchemes.white,
+                                      fontSize: 10,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                ],
+                              ))
+                        ]),
+              )
             ],
           ),
           body: Container(
@@ -205,5 +219,15 @@ class _HomeScreenState1 extends State<HomeScreen1> {
             ),
           )),
     );
+  }
+}
+
+void onSelected(BuildContext context, int item) {
+  switch (item) {
+    case 0:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => WelcomeScreen()));
+
+      break;
   }
 }
