@@ -25,6 +25,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late String email;
   late String password;
   bool isLoading = false;
+  bool isHidden = true;
+  bool isVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     children: [
                       TextFormField(
                           keyboardType: TextInputType.emailAddress,
-                          textAlign: TextAlign.center,
+                          //textAlign: TextAlign.center,
                           validator: (key) {
                             if (key == null || !key.contains('@')) {
                               return 'Please Enter your email';
@@ -76,6 +78,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                           decoration: InputDecoration(
                             filled: true,
+                            prefixIcon: Icon(
+                              Icons.email,
+                              size: 29,
+                            ),
                             fillColor: Color(0xFF0F5C61),
                             constraints:
                                 BoxConstraints(maxHeight: 100, maxWidth: 300),
@@ -104,8 +110,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               color: Colors.white)),
                       SizedBox(height: 20.0),
                       TextFormField(
-                          textAlign: TextAlign.center,
-                          obscureText: true,
+                          //textAlign: TextAlign.center,
+                          obscureText: isVisible,
                           validator: (key) {
                             if (key!.length < 4) {
                               return 'Enter at least 4 character';
@@ -117,6 +123,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                           decoration: InputDecoration(
                             filled: true,
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              size: 29,
+                            ),
+                            suffixIcon: IconButton(
+                              icon: isHidden
+                                  ? Icon(Icons.visibility_off_outlined)
+                                  : Icon(Icons.visibility),
+                              onPressed: () {
+                                setState(() {
+                                  if (isHidden == true) {
+                                    //print();
+                                    isHidden = false;
+                                    isVisible = false;
+                                  } else {
+                                    isHidden = true;
+                                    isVisible = true;
+                                  }
+                                });
+                              },
+                            ),
                             fillColor: Color(0xFF0F5C61),
                             constraints:
                                 BoxConstraints(maxHeight: 100, maxWidth: 300),

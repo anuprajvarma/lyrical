@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:lyrical/auth/loginPage.dart';
 import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
-import 'package:lyrical/screens/mainAppNavigation%5C.dart';
 import 'package:lyrical/components/myButton.dart';
 import 'package:lyrical/constant/textStyle.dart';
 import 'package:lyrical/screens/resisterScreen.dart';
@@ -21,6 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
   late String email = '';
   late String password = '';
   bool isLoading = false;
+  bool isHidden = true;
+  bool isVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -60,16 +61,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     TextFormField(
                         keyboardType: TextInputType.emailAddress,
                         validator: (key) {
-                          if (key == null || !key.contains('@')) {
+                          if (key == null) {
                             return 'Please Enter your email';
+                          } else if (!key.contains('@')) {
+                            return 'Please Use @ character';
                           }
                           return null;
                         },
-                        textAlign: TextAlign.center,
+                        //textAlign: TextAlign.center,
                         onChanged: (value) {
                           email = value;
                         },
                         decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.email,
+                            size: 29,
+                          ),
                           filled: true,
                           fillColor: Color(0xFF0F5C61),
                           constraints:
@@ -98,8 +105,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             kSendButtonTextStyle.copyWith(color: Colors.white)),
                     SizedBox(height: 20.0),
                     TextFormField(
-                        textAlign: TextAlign.center,
-                        obscureText: true,
+                        // textAlign: TextAlign.center,
+                        obscureText: isVisible,
                         validator: (key) {
                           if (key!.length < 4) {
                             return 'Enter at least 4 character';
@@ -111,6 +118,27 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         decoration: InputDecoration(
                           filled: true,
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            size: 29,
+                            //color: AppColorSchemes.blue2,
+                          ),
+                          suffixIcon: IconButton(
+                            icon: isHidden
+                                ? Icon(Icons.visibility_off_outlined)
+                                : Icon(Icons.visibility),
+                            onPressed: () {
+                              setState(() {
+                                if (isHidden == true) {
+                                  isHidden = false;
+                                  isVisible = false;
+                                } else {
+                                  isHidden = true;
+                                  isVisible = true;
+                                }
+                              });
+                            },
+                          ),
                           fillColor: Color(0xFF0F5C61),
                           constraints:
                               BoxConstraints(maxHeight: 100, maxWidth: 300),

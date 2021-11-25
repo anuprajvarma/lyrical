@@ -36,6 +36,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
   var fillColor;
   String lyric = '';
   bool isLoading = true;
+  bool status = true;
 
   Future Apicall() async {
     http.Response response =
@@ -51,6 +52,11 @@ class _LyricsScreenState extends State<LyricsScreen> {
         isLoading = false;
         lyric = getdata['lyrics'];
         //print(lyric);
+      });
+    } else {
+      setState(() {
+        status = false;
+        //print('401');
       });
     }
   }
@@ -274,7 +280,24 @@ class _LyricsScreenState extends State<LyricsScreen> {
                             height: 20,
                           ),
                           isLoading
-                              ? LoadingScreen()
+                              ? Container(
+                                  child: Column(
+                                  children: [
+                                    if (status == true)
+                                      LoadingScreen()
+                                    else
+                                      Center(
+                                          child: Text(
+                                        'No lyrics',
+                                        style: TextStyle(
+                                          color: AppColorSchemes.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Poppins',
+                                          fontSize: 18,
+                                        ),
+                                      ))
+                                  ],
+                                ))
                               : Expanded(
                                   child: SingleChildScrollView(
                                   scrollDirection: Axis.vertical,
