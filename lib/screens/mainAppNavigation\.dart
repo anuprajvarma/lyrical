@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:lyrical/screens/historyScreen.dart';
 import 'package:lyrical/screens/likesScreen.dart';
+
 import 'package:lyrical/screens/homeScreen.dart';
-import 'package:lyrical/screens/newhomeScreen.dart';
 
 class MainAppNavigation extends StatefulWidget {
   const MainAppNavigation({Key? key}) : super(key: key);

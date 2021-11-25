@@ -10,7 +10,7 @@ import 'package:lyrical/firebase/addLike.dart';
 import 'package:lyrical/firebase/checkLike.dart';
 import 'dart:convert';
 import 'package:lyrical/firebase/deleteLike.dart';
-import 'package:lyrical/screens/welcomeScreen.dart';
+import 'package:lyrical/screens/homeScreen.dart';
 
 final auth = FirebaseAuth.instance;
 final firestore = FirebaseFirestore.instance;
@@ -20,6 +20,7 @@ class LyricsScreen extends StatefulWidget {
   final String title;
 
   LyricsScreen({this.artist = '', this.title = ''});
+
   @override
   _LyricsScreenState createState() =>
       _LyricsScreenState(artist: artist, title: title);
@@ -123,21 +124,36 @@ class _LyricsScreenState extends State<LyricsScreen> {
                       color: Colors.pink,
                     ),
                   ),
-            GestureDetector(
-              onTap: () {
-                _auth.signOut();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => WelcomeScreen()));
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.logout,
-                  color: Color((0xFF0C1136)),
-                  size: 25,
-                ),
-              ),
-            ),
+            Theme(
+              data: Theme.of(context).copyWith(
+                  iconTheme: IconThemeData(color: AppColorSchemes.blue1)),
+              child: PopupMenuButton<int>(
+                  padding: EdgeInsets.all(20),
+                  color: Colors.red,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(100))),
+                  onSelected: (item) => onSelected(context, item),
+                  itemBuilder: (context) => [
+                        PopupMenuItem<int>(
+                            value: 0,
+                            child: Row(
+                              children: [
+                                Icon(Icons.logout,
+                                    color: AppColorSchemes.white),
+                                SizedBox(width: 3),
+                                Text(
+                                  'Sign Out',
+                                  style: TextStyle(
+                                    color: AppColorSchemes.white,
+                                    fontSize: 10,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              ],
+                            ))
+                      ]),
+            )
           ],
         ),
         body: Container(
