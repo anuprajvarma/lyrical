@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:lyrical/components/Card.dart';
+import 'package:lyrical/components/loading_screen.dart';
 
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/homeScreen.dart';
@@ -153,8 +154,7 @@ class _HomeScreenState2 extends State<HomeScreen2> {
                         ),
                       );
                     } else {
-                      return Center(
-                          child: Container(child: CircularProgressIndicator()));
+                      return Center(child: LoadingScreen());
                     }
                   }),
             ),

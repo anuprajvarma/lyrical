@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:lyrical/components/Card.dart';
+import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/components/myTextfield_for_artist.dart';
 import 'package:lyrical/components/myTextfield_for_title.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
@@ -214,8 +215,7 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                         ),
                       );
                     } else {
-                      return Center(
-                          child: Container(child: CircularProgressIndicator()));
+                      return Center(child: LoadingScreen());
                     }
                   }),
             ),

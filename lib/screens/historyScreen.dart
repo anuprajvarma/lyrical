@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:lyrical/components/historyCard.dart';
+import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/firebase/getHistory.dart';
 import 'package:lyrical/screens/homeScreen.dart';
@@ -152,7 +153,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   }
                 } else {
                   return Center(
-                    child: CircularProgressIndicator(color: Colors.white),
+                    child: LoadingScreen(),
                   );
                 }
               },

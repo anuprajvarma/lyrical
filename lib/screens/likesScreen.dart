@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/firebase/getLyrics.dart';
 import 'package:lyrical/components/Card.dart';
@@ -156,8 +157,7 @@ class _LikesScreenState extends State<LikesScreen> {
                   }
                 } else {
                   return Center(
-                    child:
-                        CircularProgressIndicator(color: AppColorSchemes.white),
+                    child: LoadingScreen(),
                   );
                 }
               },

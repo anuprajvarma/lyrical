@@ -5,7 +5,7 @@ import 'package:lyrical/auth/resisterPage.dart';
 import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/loginScreen.dart';
-import 'package:lyrical/screens/mainAppNavigation%5C.dart';
+
 import 'package:lyrical/components/myButton.dart';
 import 'package:lyrical/constant/textStyle.dart';
 
