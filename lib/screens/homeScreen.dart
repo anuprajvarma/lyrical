@@ -31,6 +31,7 @@ class _HomeScreenState1 extends State<HomeScreen1> {
   List<Widget> card = [];
   late String title_name = '';
   late String lyrics_name = '';
+  //final myController = TextEditingController();
 
   Future getUserdata() async {
     http.Response response = await http.get(Uri.parse(
@@ -122,7 +123,7 @@ class _HomeScreenState1 extends State<HomeScreen1> {
             ],
           ),
           body: Container(
-            width: 400,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(50),
@@ -145,6 +146,7 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                               onChanged: (value) {
                                 title_name = value;
                               },
+                              // Controller: myController,
                             ),
                             MyTextField_title(
                               hintString: 'Search  lyrics ',
@@ -154,7 +156,8 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                print('hiii');
+                                //..clear;
+                                //print('hiii');
                                 if (title_name != '') {
                                   if (lyrics_name == '') {
                                     Navigator.push(context,

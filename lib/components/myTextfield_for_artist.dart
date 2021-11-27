@@ -4,7 +4,7 @@ import 'package:lyrical/constant/colorSchemes.dart';
 
 class MyTextField_artist extends StatefulWidget {
   String hintString;
-  var mycontroller = TextEditingController();
+  //var Controller = TextEditingController();
   void Function(String)? onChanged;
 
   MyTextField_artist({this.hintString = '', this.onChanged});
@@ -15,6 +15,7 @@ class MyTextField_artist extends StatefulWidget {
 
 class _MyTextField_artistState extends State<MyTextField_artist> {
   //var mycontroller = TextEditingController();
+  //var Controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +42,7 @@ class _MyTextField_artistState extends State<MyTextField_artist> {
             Expanded(
               child: TextField(
                 autofocus: false,
+                //controller: Controller,
                 // controller: mycontroller,
                 onChanged: widget.onChanged,
                 decoration: InputDecoration(

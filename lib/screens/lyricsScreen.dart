@@ -194,13 +194,16 @@ class _LyricsScreenState extends State<LyricsScreen> {
                         SizedBox(
                           width: 20,
                         ),
-                        Text(
-                          artist,
-                          style: TextStyle(
-                            color: AppColorSchemes.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Poppins',
-                            fontSize: 18,
+                        Expanded(
+                          child: Text(
+                            artist,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: AppColorSchemes.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Poppins',
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                       ],
@@ -226,13 +229,16 @@ class _LyricsScreenState extends State<LyricsScreen> {
                         SizedBox(
                           width: 15,
                         ),
-                        Text(
-                          title,
-                          style: TextStyle(
-                            color: AppColorSchemes.white,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                        Expanded(
+                          child: Text(
+                            title,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: AppColorSchemes.white,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
                           ),
                         )
                       ],

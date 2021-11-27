@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+
 import 'package:lyrical/auth/loginPage.dart';
 import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
@@ -70,7 +71,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 return 'Please Enter your email';
                               } else if (!key.contains('@')) {
                                 return 'Please Use @ character';
-                              }
+                              } /*else if (email != _auth.currentUser!.email) {
+                                return 'Please Enter Valid email';
+                              }*/
                               return null;
                             },
                             //textAlign: TextAlign.center,
@@ -116,6 +119,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             validator: (key) {
                               if (key!.length < 4) {
                                 return 'Enter at least 4 character';
+                              } else if (User == null) {
+                                return 'Email does not exist or incorrent password';
                               }
                               return null;
                             },
@@ -178,17 +183,25 @@ class _LoginScreenState extends State<LoginScreen> {
                                 title: 'Log In',
                                 colour: Colors.lightBlueAccent,
                                 onPressed: () async {
-                                  //final userEmail = await _auth.currentUser!.email;
-                                  //final userPassword=await _auth.currentUser.
-                                  //print(_formKey.currentState!.validate());
-                                  if (_formKey.currentState!.validate()) {
+                                  loginPage(email, password, context);
+
+                                  final User = await _auth.currentUser;
+
+                                  print('hjdno');
+                                  print(User);
+                                  if (_formKey.currentState!.validate() ==
+                                          true &&
+                                      User != null) {
                                     setState(() {
                                       isLoading = true;
                                     });
                                   } else {
-                                    isLoading = false;
+                                    print('not valid');
+
+                                    setState(() {
+                                      isLoading = false;
+                                    });
                                   }
-                                  loginPage(email, password, context);
                                 }),
                         Stack(
                           children: [
