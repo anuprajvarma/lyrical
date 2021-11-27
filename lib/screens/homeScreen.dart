@@ -174,8 +174,9 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                                 }
                               },
                               child: Container(
-                                width: 180,
-                                height: 55,
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.14,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: AppColorSchemes.blue4,

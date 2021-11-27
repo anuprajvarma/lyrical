@@ -58,175 +58,184 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         topRight: Radius.circular(50),
                         topLeft: Radius.circular(50))),
                 padding: EdgeInsets.only(top: 50),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          //textAlign: TextAlign.center,
-                          validator: (key) {
-                            if (key == null || !key.contains('@')) {
-                              return 'Please Enter your email';
-                            }
-                            return null;
-                          },
-                          onChanged: (value) {
-                            email = value;
-                          },
-                          decoration: InputDecoration(
-                            filled: true,
-                            prefixIcon: Icon(
-                              Icons.email,
-                              size: 29,
-                            ),
-                            fillColor: Color(0xFF0F5C61),
-                            constraints:
-                                BoxConstraints(maxHeight: 100, maxWidth: 300),
-                            border: OutlineInputBorder(),
-                            hintText: 'Enter your Email',
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 5.0, horizontal: 20.0),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                borderSide:
-                                    BorderSide(color: AppColorSchemes.blue1)),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              borderSide: BorderSide(
-                                  color: AppColorSchemes.blue4, width: 1.5),
-                            ),
-                            hintStyle: TextStyle(
-                              color: Color(0xFF457585),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          style: kSendButtonTextStyle.copyWith(
-                              color: Colors.white)),
-                      SizedBox(height: 20.0),
-                      TextFormField(
-                          //textAlign: TextAlign.center,
-                          obscureText: isVisible,
-                          validator: (key) {
-                            if (key!.length < 4) {
-                              return 'Enter at least 4 character';
-                            }
-                            return null;
-                          },
-                          onChanged: (value) {
-                            password = value;
-                          },
-                          decoration: InputDecoration(
-                            filled: true,
-                            prefixIcon: Icon(
-                              Icons.lock,
-                              size: 29,
-                            ),
-                            suffixIcon: IconButton(
-                              icon: isHidden
-                                  ? Icon(Icons.visibility_off_outlined)
-                                  : Icon(Icons.visibility),
-                              onPressed: () {
-                                setState(() {
-                                  if (isHidden == true) {
-                                    //print();
-                                    isHidden = false;
-                                    isVisible = false;
-                                  } else {
-                                    isHidden = true;
-                                    isVisible = true;
-                                  }
-                                });
-                              },
-                            ),
-                            fillColor: Color(0xFF0F5C61),
-                            constraints:
-                                BoxConstraints(maxHeight: 100, maxWidth: 300),
-                            border: OutlineInputBorder(),
-                            hintText: 'Enter your password',
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 5.0, horizontal: 20.0),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                borderSide:
-                                    BorderSide(color: AppColorSchemes.blue1)),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              borderSide: BorderSide(
-                                  color: AppColorSchemes.blue4, width: 1.5),
-                            ),
-                            hintStyle: TextStyle(
-                              color: Color(0xFF457585),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          style: kSendButtonTextStyle.copyWith(
-                              color: Colors.white)),
-                      SizedBox(height: 20),
-                      isLoading
-                          ? LoadingScreen()
-                          : MyButton(
-                              title: 'Register',
-                              colour: Colors.lightBlueAccent,
-                              onPressed: () async {
-                                if (_formKey.currentState!.validate()) {
-                                  setState(() {
-                                    isLoading = true;
-                                  });
-                                }
-                                register(email, password, context);
-                              }),
-                      Stack(
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            padding: EdgeInsets.only(top: 15, left: 46),
-                            child: Text(
-                              '_____________________________________',
-                              style: TextStyle(
-                                color: AppColorSchemes.white,
-                                //fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          Row(
-                            //crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Already have an account?',
-                                style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: AppColorSchemes.white),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushAndRemoveUntil(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => LoginScreen()),
-                                      (route) => false);
-                                },
-                                child: Text(
-                                  'Login',
-                                  style: TextStyle(
-                                      color: AppColorSchemes.blue3,
-                                      fontSize: 16,
-                                      fontFamily: 'Poppins'),
+                          TextFormField(
+                              keyboardType: TextInputType.emailAddress,
+                              //textAlign: TextAlign.center,
+                              validator: (key) {
+                                if (key == null || !key.contains('@')) {
+                                  return 'Please Enter your email';
+                                }
+                                return null;
+                              },
+                              onChanged: (value) {
+                                email = value;
+                              },
+                              decoration: InputDecoration(
+                                filled: true,
+                                prefixIcon: Icon(
+                                  Icons.email,
+                                  size: 29,
                                 ),
-                              )
+                                fillColor: Color(0xFF0F5C61),
+                                constraints: BoxConstraints(
+                                    maxHeight: 100, maxWidth: 300),
+                                border: OutlineInputBorder(),
+                                hintText: 'Enter your Email',
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 5.0, horizontal: 20.0),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    borderSide: BorderSide(
+                                        color: AppColorSchemes.blue1)),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(
+                                      color: AppColorSchemes.blue4, width: 1.5),
+                                ),
+                                hintStyle: TextStyle(
+                                  color: Color(0xFF457585),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              style: kSendButtonTextStyle.copyWith(
+                                  color: Colors.white)),
+                          SizedBox(height: 20.0),
+                          TextFormField(
+                              //textAlign: TextAlign.center,
+                              obscureText: isVisible,
+                              validator: (key) {
+                                if (key!.length < 4) {
+                                  return 'Enter at least 4 character';
+                                }
+                                return null;
+                              },
+                              onChanged: (value) {
+                                password = value;
+                              },
+                              decoration: InputDecoration(
+                                filled: true,
+                                prefixIcon: Icon(
+                                  Icons.lock,
+                                  size: 29,
+                                ),
+                                suffixIcon: IconButton(
+                                  icon: isHidden
+                                      ? Icon(Icons.visibility_off_outlined)
+                                      : Icon(Icons.visibility),
+                                  onPressed: () {
+                                    setState(() {
+                                      if (isHidden == true) {
+                                        //print();
+                                        isHidden = false;
+                                        isVisible = false;
+                                      } else {
+                                        isHidden = true;
+                                        isVisible = true;
+                                      }
+                                    });
+                                  },
+                                ),
+                                fillColor: Color(0xFF0F5C61),
+                                constraints: BoxConstraints(
+                                    maxHeight: 100, maxWidth: 300),
+                                border: OutlineInputBorder(),
+                                hintText: 'Enter your password',
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 5.0, horizontal: 20.0),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    borderSide: BorderSide(
+                                        color: AppColorSchemes.blue1)),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(
+                                      color: AppColorSchemes.blue4, width: 1.5),
+                                ),
+                                hintStyle: TextStyle(
+                                  color: Color(0xFF457585),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              style: kSendButtonTextStyle.copyWith(
+                                  color: Colors.white)),
+                          SizedBox(height: 20),
+                          isLoading
+                              ? LoadingScreen()
+                              : MyButton(
+                                  title: 'Register',
+                                  colour: Colors.lightBlueAccent,
+                                  onPressed: () async {
+                                    if (_formKey.currentState!.validate()) {
+                                      setState(() {
+                                        isLoading = true;
+                                      });
+                                    }
+                                    register(email, password, context);
+                                  }),
+                          Stack(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(
+                                    top: MediaQuery.of(context).size.height *
+                                        0.02,
+                                    left: MediaQuery.of(context).size.width *
+                                        0.19),
+                                child: Text(
+                                  '_____________________________________',
+                                  style: TextStyle(
+                                    color: AppColorSchemes.white,
+                                    //fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Row(
+                                //crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Already have an account?',
+                                    style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        color: AppColorSchemes.white),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LoginScreen()),
+                                          (route) => false);
+                                    },
+                                    child: Text(
+                                      'Login',
+                                      style: TextStyle(
+                                          color: AppColorSchemes.blue3,
+                                          fontSize: 16,
+                                          fontFamily: 'Poppins'),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ],
-                          ),
+                          )
                         ],
-                      )
-                    ],
+                      ),
+                    ),
                   ),
                 ),
               ),
