@@ -1,11 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lyrical/auth/loginPage.dart';
+
 import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/components/myButton.dart';
 import 'package:lyrical/constant/textStyle.dart';
+import 'package:lyrical/screens/mainAppNavigation%5C.dart';
 import 'package:lyrical/screens/resisterScreen.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -24,7 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
   bool isHidden = true;
   bool isVisible = true;
-  final User = _auth.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -177,32 +178,24 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: kSendButtonTextStyle.copyWith(
                                 color: Colors.white)),
                         SizedBox(height: 20),
-                        isLoading
-                            ? LoadingScreen()
-                            : MyButton(
-                                title: 'Log In',
-                                colour: Colors.lightBlueAccent,
-                                onPressed: () async {
-                                  loginPage(email, password, context);
+                        MyButton(
+                            title: 'Log In',
+                            colour: Colors.lightBlueAccent,
+                            onPressed: () async {
+                              login(email, password, context);
+                              if (_formKey.currentState!.validate() == true &&
+                                  User != null) {
+                                setState(() {
+                                  isLoading = true;
+                                });
+                              } else {
+                                print('not valid');
 
-                                  final User = await _auth.currentUser;
-
-                                  print('hjdno');
-                                  print(User);
-                                  if (_formKey.currentState!.validate() ==
-                                          true &&
-                                      User != null) {
-                                    setState(() {
-                                      isLoading = true;
-                                    });
-                                  } else {
-                                    print('not valid');
-
-                                    setState(() {
-                                      isLoading = false;
-                                    });
-                                  }
-                                }),
+                                setState(() {
+                                  isLoading = false;
+                                });
+                              }
+                            }),
                         Stack(
                           children: [
                             Container(

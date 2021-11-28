@@ -4,14 +4,15 @@ import 'package:lyrical/screens/mainAppNavigation%5C.dart';
 
 final _auth = FirebaseAuth.instance;
 
-Future<void> loginPage(
-    String email, String password, BuildContext context) async {
+Future<void> login(String email, String password, BuildContext context) async {
   try {
     final user = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
     if (user != null) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => MainAppNavigation()));
+    } else {
+      print('hiiiiii');
     }
   } catch (e) {
     print(e);

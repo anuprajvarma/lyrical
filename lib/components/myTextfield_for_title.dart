@@ -1,13 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyTextField_title extends StatelessWidget {
+class MyTextField_title extends StatefulWidget {
   String hintString;
 
   void Function(String)? onChanged;
 
   MyTextField_title({this.hintString = '', this.onChanged});
 
+  @override
+  State<MyTextField_title> createState() => _MyTextField_titleState();
+}
+
+class _MyTextField_titleState extends State<MyTextField_title> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -33,7 +38,7 @@ class MyTextField_title extends StatelessWidget {
             Expanded(
               child: TextField(
                 autofocus: false,
-                onChanged: onChanged,
+                onChanged: widget.onChanged,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintStyle: TextStyle(
@@ -42,7 +47,7 @@ class MyTextField_title extends StatelessWidget {
                     fontFamily: 'Poppins',
                   ),
                   fillColor: Colors.white,
-                  hintText: hintString,
+                  hintText: widget.hintString,
                 ),
                 style: TextStyle(
                   color: Colors.white,

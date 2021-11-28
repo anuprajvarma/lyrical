@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:http/http.dart' as http;
 import 'package:lyrical/components/Card.dart';
 import 'package:lyrical/components/loading_screen.dart';
@@ -31,7 +32,6 @@ class _HomeScreenState1 extends State<HomeScreen1> {
   List<Widget> card = [];
   late String title_name = '';
   late String lyrics_name = '';
-  //final myController = TextEditingController();
 
   Future getUserdata() async {
     http.Response response = await http.get(Uri.parse(
@@ -146,7 +146,6 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                               onChanged: (value) {
                                 title_name = value;
                               },
-                              // Controller: myController,
                             ),
                             MyTextField_title(
                               hintString: 'Search  lyrics ',
@@ -156,8 +155,6 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                //..clear;
-                                //print('hiii');
                                 if (title_name != '') {
                                   if (lyrics_name == '') {
                                     Navigator.push(context,
