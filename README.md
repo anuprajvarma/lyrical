@@ -4,6 +4,17 @@
 
 A flutter app that use MusicMatch API and has a Firebase Backend,In this app first of all user Register with email and password then user can search any lyrics with(title or lyrics name).You can add any lyrics and access,your history is store.
 
+# Technology 
+
+Lyrical is a app build with the following
+
+*  [Dart](https://dart.dev/guides)
+*  [Flutter](https://flutter.dev/)
+*  [Firebase](https://firebase.google.com/docs?gclsrc=ds&gclsrc=ds&gclid=CO2hw6mJ0fQCFRN1jgodSxgMEw)
+*  [MusicMatch API](https://developer.musixmatch.com/)
+
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
