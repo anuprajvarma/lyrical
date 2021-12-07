@@ -1,6 +1,8 @@
 # lyrical
 
-A new Flutter project.
+<img align="center" src="readmeImage/Lyrical.png" height="425">
+
+A flutter app that use MusicMatch API and has a Firebase Backend,In this app first of all user Register with email and password then user can search any lyrics with(title or lyrics name).You can add any lyrics and access,your history is store.
 
 ## Getting Started
 
