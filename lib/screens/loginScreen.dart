@@ -25,14 +25,6 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isHidden = true;
   bool isVisible = true;
 
-  void showtoast() => Fluttertoast.showToast(
-        msg: 'Invalid email or password',
-        textColor: Colors.white,
-        fontSize: 18,
-        gravity: ToastGravity.BOTTOM,
-        backgroundColor: Colors.blue,
-      );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -197,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     setState(() {
                                       isLoading = true;
                                     });
-                                    await login(email, password, context);
+                                    await login(email, password, this.context);
                                     setState(() {
                                       isLoading = false;
                                     });
