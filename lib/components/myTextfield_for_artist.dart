@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 
+// ignore: camel_case_types
 class MyTextField_artist extends StatefulWidget {
   final String hintString;
   void Function(String)? onChanged;
@@ -11,11 +12,10 @@ class MyTextField_artist extends StatefulWidget {
   State<MyTextField_artist> createState() => _MyTextField_artistState();
 }
 
+// ignore: camel_case_types
 class _MyTextField_artistState extends State<MyTextField_artist> {
   @override
   Widget build(BuildContext context) {
-    //var widget;
-    var controller;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(

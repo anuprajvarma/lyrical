@@ -2,12 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lyrical/auth/loginPage.dart';
-
 import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/components/myButton.dart';
 import 'package:lyrical/constant/textStyle.dart';
-import 'package:lyrical/screens/mainAppNavigation%5C.dart';
 import 'package:lyrical/screens/resisterScreen.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -26,6 +24,14 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
   bool isHidden = true;
   bool isVisible = true;
+
+  void showtoast() => Fluttertoast.showToast(
+        msg: 'Invalid email or password',
+        textColor: Colors.white,
+        fontSize: 18,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.blue,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +74,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         TextFormField(
                             keyboardType: TextInputType.emailAddress,
                             validator: (key) {
+                              String p =
+                                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                              final regExp = RegExp(p);
+
                               if (key == null) {
                                 return 'Please Enter your email';
-                              } else if (!key.contains('@')) {
-                                return 'Please Use @ character';
+                              } else if (!regExp.hasMatch(key)) {
+                                return 'Please Enter a valid email';
                               } /*else if (email != _auth.currentUser!.email) {
                                 return 'Please Enter Valid email';
                               }*/
@@ -120,8 +130,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             validator: (key) {
                               if (key!.length < 4) {
                                 return 'Enter at least 4 character';
-                              } else if (User == null) {
-                                return 'Email does not exist or incorrent password';
                               }
                               return null;
                             },
@@ -178,24 +186,23 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: kSendButtonTextStyle.copyWith(
                                 color: Colors.white)),
                         SizedBox(height: 20),
-                        MyButton(
-                            title: 'Log In',
-                            colour: Colors.lightBlueAccent,
-                            onPressed: () async {
-                              login(email, password, context);
-                              if (_formKey.currentState!.validate() == true &&
-                                  User != null) {
-                                setState(() {
-                                  isLoading = true;
-                                });
-                              } else {
-                                print('not valid');
-
-                                setState(() {
-                                  isLoading = false;
-                                });
-                              }
-                            }),
+                        isLoading
+                            ? LoadingScreen()
+                            : MyButton(
+                                title: 'Log In',
+                                colour: Colors.lightBlueAccent,
+                                onPressed: () async {
+                                  if (_formKey.currentState!.validate()) {
+                                    // _formKey.currentState!.save();
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+                                    await login(email, password, context);
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                  }
+                                }),
                         Stack(
                           children: [
                             Container(
@@ -217,7 +224,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'I dont have an account?',
+                                  "I don't have an account?",
                                   style: TextStyle(
                                       fontFamily: 'Poppins',
                                       color: AppColorSchemes.white),
@@ -253,5 +260,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
+    // ignore: dead_code
   }
 }

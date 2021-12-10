@@ -5,7 +5,6 @@ import 'package:lyrical/auth/resisterPage.dart';
 import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/loginScreen.dart';
-
 import 'package:lyrical/components/myButton.dart';
 import 'package:lyrical/constant/textStyle.dart';
 
@@ -183,8 +182,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       setState(() {
                                         isLoading = true;
                                       });
+                                      await register(email, password, context);
+
+                                      setState(() {
+                                        isLoading = false;
+                                      });
                                     }
-                                    register(email, password, context);
                                   }),
                           Stack(
                             children: [

@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:http/http.dart' as http;
 import 'package:lyrical/components/Card.dart';
 import 'package:lyrical/components/loading_screen.dart';
@@ -12,11 +11,10 @@ import 'package:lyrical/components/myTextfield_for_title.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/searchLyricsScreen.dart';
 import 'package:lyrical/screens/searchTitleScreen.dart';
-
 import 'dart:convert';
-
 import 'package:lyrical/screens/welcomeScreen.dart';
 
+// ignore: unused_element
 final _auth = FirebaseAuth.instance;
 final firestore = FirebaseFirestore.instance;
 
@@ -27,10 +25,13 @@ class HomeScreen1 extends StatefulWidget {
 
 class _HomeScreenState1 extends State<HomeScreen1> {
   var fc53f4361ba7e110bac6bca264924af0;
+
   var title;
   var artist;
   List<Widget> card = [];
+  // ignore: non_constant_identifier_names
   late String title_name = '';
+  // ignore: non_constant_identifier_names
   late String lyrics_name = '';
 
   Future getUserdata() async {
@@ -39,8 +40,6 @@ class _HomeScreenState1 extends State<HomeScreen1> {
 
     if (response.statusCode == 200) {
       var getdata = json.decode(response.body);
-      // print(getdata);
-
       card = [];
 
       for (int i = 0; i < 5; i++) {
