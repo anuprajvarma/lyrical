@@ -1,9 +1,9 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:glassmorphism/glassmorphism.dart';
+import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/loginScreen.dart';
 import 'package:lyrical/screens/resisterScreen.dart';
-import 'package:lyrical/components/myButton.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -16,50 +16,104 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              children: [
-                SizedBox(width: 95),
-                TypewriterAnimatedTextKit(
-                  text: ['Lyrical'],
-                  textStyle: TextStyle(
-                    color: Color(0xFF457585),
-                    fontSize: 50,
-                    fontFamily: 'Poppins',
+        body: SafeArea(
+      child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          child: Stack(
+            children: [
+              Image.asset(
+                'images/Appicon3.gif',
+                fit: BoxFit.cover,
+                height: 780,
+                width: double.infinity,
+                scale: 1,
+              ),
+              SafeArea(
+                  child: Center(
+                child: GlassmorphicContainer(
+                  width: 300,
+                  height: 400,
+                  blur: 20,
+                  border: 1,
+                  borderGradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFFffffff).withOpacity(0.5),
+                      Color((0xFFFFFFFF)).withOpacity(0.5),
+                    ],
                   ),
-                  speed: const Duration(milliseconds: 100),
-                  totalRepeatCount: 1,
+                  borderRadius: 20,
+                  linearGradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color(0xFFffffff).withOpacity(0.1),
+                        Color(0xFFFFFFFF).withOpacity(0.05),
+                      ],
+                      stops: [
+                        0.1,
+                        1,
+                      ]),
                 ),
-              ],
-            ),
-            SizedBox(height: 40),
-            MyButton(
-                title: 'Log In',
-                colour: Color(0xFFB71C1C),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginScreen()));
-                }),
-            SizedBox(height: 20),
-            MyButton(
-                title: 'Registration',
-                colour: Color(0xFFB71C1C),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const RegisterScreen()));
-                }),
-          ],
-        ),
-      ),
-    );
+              )),
+              Positioned(
+                left: 100,
+                top: 300,
+                child: Container(
+                  width: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Color(0xFF39A2DB),
+                  ),
+                  child: MaterialButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()));
+                    },
+                    height: 50.0,
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                          color: AppColorSchemes.blue1,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Poppins'),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 101,
+                top: 380,
+                child: Container(
+                  width: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Color(0xFF39A2DB),
+                  ),
+                  child: MaterialButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterScreen()));
+                    },
+                    height: 50.0,
+                    child: Text(
+                      'Resister',
+                      style: TextStyle(
+                          color: AppColorSchemes.blue1,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Poppins'),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          )),
+    ));
   }
 }

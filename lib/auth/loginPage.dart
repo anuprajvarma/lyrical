@@ -23,5 +23,5 @@ void toast({String message = 'toast'}) => Fluttertoast.showToast(
       textColor: Colors.white,
       fontSize: 18,
       gravity: ToastGravity.BOTTOM,
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.blueAccent,
     );
