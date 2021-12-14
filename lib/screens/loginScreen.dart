@@ -105,7 +105,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
                                 borderSide: BorderSide(
-                                    color: AppColorSchemes.blue4, width: 1.5),
+                                    color: AppColorSchemes.blue4,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.005),
                               ),
                               hintStyle: TextStyle(
                                 color: Color(0xFF457585),
@@ -167,7 +169,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
                                 borderSide: BorderSide(
-                                    color: AppColorSchemes.blue4, width: 1.5),
+                                    color: AppColorSchemes.blue4,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.005),
                               ),
                               hintStyle: TextStyle(
                                 color: Color(0xFF457585),

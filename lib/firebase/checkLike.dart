@@ -17,7 +17,6 @@ Future<bool> checkLike(String artist, String title) async {
     // print(likes);
 
     for (var like in likes) {
-      print(like);
       if (like['artist'].compareTo(artist) == 0 &&
           like['title'].compareTo(title) == 0) {
         isLiked = true;

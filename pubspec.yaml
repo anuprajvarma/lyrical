@@ -35,6 +35,9 @@ dependencies:
   flutter_launcher_icons: ^0.9.2
   fluttertoast: ^8.0.8
   glassmorphism: ^3.0.0
+  skeleton_loader: ^2.0.0+4
+  skeleton_text: ^3.0.0
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +62,9 @@ flutter:
     - images/Appicon2.gif
     - images/Appicon3.gif
     - images/Appicon4.gif
+    - images/landingPage.png
+    - images/landingPage2.png
+    - images/loadingPage.png
 
   fonts:
     - family: Poppins

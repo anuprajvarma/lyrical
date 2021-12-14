@@ -34,8 +34,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: Column(
         children: [
           Container(
-            height: 200,
-            width: 500,
+            height: MediaQuery.of(context).size.height * 0.25,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(color: AppColorSchemes.white),
             padding: EdgeInsets.only(left: 20, top: 50),
             child: Text(
@@ -50,7 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Expanded(
             child: Center(
               child: Container(
-                width: 500,
+                width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: AppColorSchemes.blue1,
                     borderRadius: BorderRadius.only(
@@ -99,7 +99,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
                                   borderSide: BorderSide(
-                                      color: AppColorSchemes.blue4, width: 1.5),
+                                      color: AppColorSchemes.blue4,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.005),
                                 ),
                                 hintStyle: TextStyle(
                                   color: Color(0xFF457585),
@@ -109,7 +111,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ),
                               style: kSendButtonTextStyle.copyWith(
                                   color: Colors.white)),
-                          SizedBox(height: 20.0),
+                          SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.03),
                           TextFormField(
                               //textAlign: TextAlign.center,
                               obscureText: isVisible,
@@ -135,7 +139,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   onPressed: () {
                                     setState(() {
                                       if (isHidden == true) {
-                                        //print();
                                         isHidden = false;
                                         isVisible = false;
                                       } else {
@@ -161,7 +164,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
                                   borderSide: BorderSide(
-                                      color: AppColorSchemes.blue4, width: 1.5),
+                                      color: AppColorSchemes.blue4,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.005),
                                 ),
                                 hintStyle: TextStyle(
                                   color: Color(0xFF457585),

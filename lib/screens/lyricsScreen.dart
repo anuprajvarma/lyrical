@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:lyrical/components/shimmerLoading_screen.dart';
 import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/firebase/addLike.dart';
@@ -45,18 +46,15 @@ class _LyricsScreenState extends State<LyricsScreen> {
     if (response.statusCode == 200) {
       var getdata = json.decode(response.body);
 
-      //print(artist + " " + title);
       isLiked = await checkLike(artist, title);
-      // print(isLiked);
+
       setState(() {
         isLoading = false;
         lyric = getdata['lyrics'];
-        //print(lyric);
       });
     } else {
       setState(() {
         status = false;
-        //print('401');
       });
     }
   }
@@ -85,7 +83,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                 color: AppColorSchemes.blue1,
               ),
               SizedBox(
-                width: 10,
+                width: MediaQuery.of(context).size.width * 0.03,
               ),
               Text(
                 'Lyrics',
@@ -146,7 +144,9 @@ class _LyricsScreenState extends State<LyricsScreen> {
                               children: [
                                 Icon(Icons.logout,
                                     color: AppColorSchemes.white),
-                                SizedBox(width: 3),
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.005),
                                 Text(
                                   'Sign Out',
                                   style: TextStyle(
@@ -163,7 +163,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
           ],
         ),
         body: Container(
-          width: 400,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(50), topLeft: Radius.circular(50)),
@@ -178,7 +178,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                 ),
                 Container(
                   height: 50,
-                  width: 350,
+                  width: MediaQuery.of(context).size.width * 0.89,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: AppColorSchemes.blue2,
@@ -213,7 +213,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                 SizedBox(height: 15),
                 Container(
                   height: 50,
-                  width: 350,
+                  width: MediaQuery.of(context).size.width * 0.89,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: AppColorSchemes.blue2,
@@ -227,7 +227,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                           color: AppColorSchemes.blue3,
                         ),
                         SizedBox(
-                          width: 15,
+                          width: MediaQuery.of(context).size.width * 0.04,
                         ),
                         Expanded(
                           child: Text(
@@ -250,7 +250,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                 ),
                 Expanded(
                   child: Container(
-                      width: 350,
+                      width: MediaQuery.of(context).size.width * 0.89,
                       height: 580,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -268,7 +268,8 @@ class _LyricsScreenState extends State<LyricsScreen> {
                                   color: AppColorSchemes.blue3,
                                 ),
                                 SizedBox(
-                                  width: 20,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.04,
                                 ),
                                 Text(
                                   'Lyrics',
@@ -290,7 +291,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                                   child: Column(
                                   children: [
                                     if (status == true)
-                                      LoadingScreen()
+                                      ShimmerLoading()
                                     else
                                       Center(
                                           child: Text(

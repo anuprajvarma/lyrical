@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lyrical/components/historyCard.dart';
+import 'package:lyrical/components/shimmerForBox.dart';
+import 'package:lyrical/components/shimmerLoading_screen.dart';
 import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/firebase/getHistory.dart';
@@ -47,7 +49,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 color: AppColorSchemes.blue1,
                 size: 40,
               ),
-              SizedBox(width: 10),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.009),
               Text(
                 'History',
                 style: TextStyle(
@@ -78,7 +80,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               children: [
                                 Icon(Icons.logout,
                                     color: AppColorSchemes.white),
-                                SizedBox(width: 3),
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.005),
                                 Text(
                                   'Sign Out',
                                   style: TextStyle(
@@ -95,7 +99,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           ],
         ),
         body: Container(
-          width: 400,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(50), topLeft: Radius.circular(50)),
@@ -117,7 +121,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           color: AppColorSchemes.white,
                         ),
                         SizedBox(
-                          width: 10.0,
+                          width: MediaQuery.of(context).size.width * 0.009,
                         ),
                         Text(
                           'No history ',
@@ -151,7 +155,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   }
                 } else {
                   return Center(
-                    child: LoadingScreen(),
+                    child: ShimmerBox(),
                   );
                 }
               },

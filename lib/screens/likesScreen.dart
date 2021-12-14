@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lyrical/components/shimmerForBox.dart';
+import 'package:lyrical/components/shimmerLoading_screen.dart';
 import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/firebase/getLyrics.dart';
@@ -51,7 +53,7 @@ class _LikesScreenState extends State<LikesScreen> {
                 size: 40,
               ),
               SizedBox(
-                width: 10,
+                width: MediaQuery.of(context).size.width * 0.005,
               ),
               Text(
                 'Liked Lyrics',
@@ -83,7 +85,9 @@ class _LikesScreenState extends State<LikesScreen> {
                               children: [
                                 Icon(Icons.logout,
                                     color: AppColorSchemes.white),
-                                SizedBox(width: 3),
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.005),
                                 Text(
                                   'Sign Out',
                                   style: TextStyle(
@@ -100,7 +104,7 @@ class _LikesScreenState extends State<LikesScreen> {
           ],
         ),
         body: Container(
-          width: 400,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(50), topLeft: Radius.circular(50)),
@@ -122,7 +126,7 @@ class _LikesScreenState extends State<LikesScreen> {
                           color: AppColorSchemes.white,
                         ),
                         SizedBox(
-                          width: 10.0,
+                          width: MediaQuery.of(context).size.width * 0.1,
                         ),
                         Text(
                           'No like lyrics',
@@ -157,7 +161,7 @@ class _LikesScreenState extends State<LikesScreen> {
                   }
                 } else {
                   return Center(
-                    child: LoadingScreen(),
+                    child: ShimmerBox(),
                   );
                 }
               },

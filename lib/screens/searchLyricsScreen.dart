@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:lyrical/components/Card.dart';
+import 'package:lyrical/components/shimmerLoading_screen.dart';
 import 'package:lyrical/components/loading_screen.dart';
 
 import 'package:lyrical/constant/colorSchemes.dart';
@@ -50,9 +51,6 @@ class _HomeScreenState3 extends State<HomeScreen3> {
           title: getdata['message']['body']['track_list'][i]['track']
               ['track_name'],
         ));
-        //print(artist);
-        print('hiiii');
-        print(lyrics_name);
       }
     }
     //return artist;
@@ -69,13 +67,8 @@ class _HomeScreenState3 extends State<HomeScreen3> {
             elevation: 0,
             title: Row(
               children: [
-                Icon(
-                  Icons.search,
-                  color: AppColorSchemes.blue1,
-                  size: 40,
-                ),
                 SizedBox(
-                  width: 10,
+                  width: MediaQuery.of(context).size.width * 0.03,
                 ),
                 Text(
                   'Search Lyrics',
@@ -107,7 +100,10 @@ class _HomeScreenState3 extends State<HomeScreen3> {
                                 children: [
                                   Icon(Icons.logout,
                                       color: AppColorSchemes.white),
-                                  SizedBox(width: 3),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.3,
+                                  ),
                                   Text(
                                     'Sign Out',
                                     style: TextStyle(
@@ -124,7 +120,7 @@ class _HomeScreenState3 extends State<HomeScreen3> {
             ],
           ),
           body: Container(
-            width: 400,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(50),
@@ -140,7 +136,7 @@ class _HomeScreenState3 extends State<HomeScreen3> {
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 40,
+                              height: MediaQuery.of(context).size.width * 0.09,
                             ),
                             Expanded(
                               child: GridView.count(
@@ -155,7 +151,7 @@ class _HomeScreenState3 extends State<HomeScreen3> {
                         ),
                       );
                     } else {
-                      return Center(child: LoadingScreen());
+                      return Center(child: ShimmerLoading());
                     }
                   }),
             ),

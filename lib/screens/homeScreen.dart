@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:lyrical/components/Card.dart';
+import 'package:lyrical/components/shimmerLoading_screen.dart';
 import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/components/myTextfield_for_artist.dart';
 import 'package:lyrical/components/myTextfield_for_title.dart';
@@ -73,7 +74,7 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                   size: 40,
                 ),
                 SizedBox(
-                  width: 10,
+                  width: MediaQuery.of(context).size.width * 0.03,
                 ),
                 Text(
                   'Search Lyrics',
@@ -105,7 +106,9 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                                 children: [
                                   Icon(Icons.logout,
                                       color: AppColorSchemes.white),
-                                  SizedBox(width: 3),
+                                  SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.005),
                                   Text(
                                     'Sign Out',
                                     style: TextStyle(
@@ -188,7 +191,10 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                                       size: 20,
                                       color: AppColorSchemes.blue1,
                                     ),
-                                    SizedBox(width: 10),
+                                    SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02),
                                     Text(
                                       'Get Lyrics',
                                       style: TextStyle(
@@ -206,8 +212,6 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                               child: GridView.count(
                                 crossAxisCount: 2,
                                 children: card,
-                                // crossAxisSpacing: 10,
-                                // mainAxisSpacing: 15,
                                 childAspectRatio: 1.5,
                               ),
                             ),
@@ -215,7 +219,7 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                         ),
                       );
                     } else {
-                      return Center(child: LoadingScreen());
+                      return Center(child: ShimmerLoading());
                     }
                   }),
             ),

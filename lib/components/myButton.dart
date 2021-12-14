@@ -16,7 +16,7 @@ class MyButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(0.0),
       child: Container(
-        width: 300,
+        width: MediaQuery.of(context).size.width * 0.76,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           color: Color(0xFF39A2DB),

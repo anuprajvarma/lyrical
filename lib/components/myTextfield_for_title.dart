@@ -18,7 +18,7 @@ class _MyTextField_titleState extends State<MyTextField_title> {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
-        width: 350,
+        width: MediaQuery.of(context).size.width * 0.87,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Color(0xFF0F5C61),
@@ -26,14 +26,14 @@ class _MyTextField_titleState extends State<MyTextField_title> {
         child: Row(
           children: [
             SizedBox(
-              width: 15,
+              width: MediaQuery.of(context).size.width * 0.04,
             ),
             Icon(
               Icons.headphones,
               color: Color(0xFF2C88B6),
             ),
             SizedBox(
-              width: 20,
+              width: MediaQuery.of(context).size.width * 0.04,
             ),
             Expanded(
               child: TextField(

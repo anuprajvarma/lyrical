@@ -33,7 +33,7 @@ class CardScreen extends StatelessWidget {
                       color: AppColorSchemes.blue3,
                     ),
                     SizedBox(
-                      width: 10,
+                      width: MediaQuery.of(context).size.width * 0.005,
                     ),
                     Expanded(
                       child: Text(
@@ -59,7 +59,7 @@ class CardScreen extends StatelessWidget {
                       color: AppColorSchemes.blue3,
                     ),
                     SizedBox(
-                      width: 10,
+                      width: MediaQuery.of(context).size.width * 0.005,
                     ),
                     Expanded(
                       child: Text(
@@ -81,7 +81,6 @@ class CardScreen extends StatelessWidget {
         ),
       ),
       onTap: () {
-        print(artist);
         addHistory(artist, title);
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return LyricsScreen(artist: artist, title: title);

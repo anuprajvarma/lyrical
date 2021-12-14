@@ -32,7 +32,7 @@ class HistoryCard extends StatelessWidget {
                     color: AppColorSchemes.blue3,
                   ),
                   SizedBox(
-                    width: 10,
+                    width: MediaQuery.of(context).size.width * 0.02,
                   ),
                   Expanded(
                     child: Text(
@@ -58,7 +58,7 @@ class HistoryCard extends StatelessWidget {
                     color: AppColorSchemes.blue3,
                   ),
                   SizedBox(
-                    width: 10,
+                    width: MediaQuery.of(context).size.width * 0.02,
                   ),
                   Expanded(
                     child: Text(
