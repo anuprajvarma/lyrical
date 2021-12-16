@@ -20,6 +20,7 @@ class _MyTextField_artistState extends State<MyTextField_artist> {
       padding: const EdgeInsets.all(16.0),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.88,
+        height: MediaQuery.of(context).size.height * 0.07,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Color(0xFF0F5C61),

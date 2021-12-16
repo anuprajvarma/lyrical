@@ -15,7 +15,7 @@ class MainAppNavigation extends StatefulWidget {
 class _MainAppNavigationState extends State<MainAppNavigation> {
   int currentIndex = 0;
   final Screen = [
-    HomeScreen1(),
+    HomeScreen(),
     LikesScreen(),
     HistoryScreen(),
   ];

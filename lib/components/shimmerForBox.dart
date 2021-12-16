@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/constant/constantContainer.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:lyrical/constant/shimmerContainer.dart';
 
 class ShimmerBox extends StatelessWidget {
   static var use;
@@ -10,55 +9,49 @@ class ShimmerBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        child: Center(
-          child: Shimmer.fromColors(
-            child: Column(
+        child: Column(
+          children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+            Row(
               children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                Row(
-                  children: [
-                    ConstantContainer(),
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-                    ConstantContainer(),
-                  ],
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                Row(
-                  children: [
-                    ConstantContainer(),
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-                    ConstantContainer(),
-                  ],
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                Row(
-                  children: [
-                    ConstantContainer(),
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-                    ConstantContainer(),
-                  ],
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                Row(
-                  children: [
-                    ConstantContainer(),
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-                    ConstantContainer(),
-                  ],
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                Row(
-                  children: [
-                    ConstantContainer(),
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-                    ConstantContainer(),
-                  ],
-                ),
+                Flexible(child: Shimmercontainer()),
+                //SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+                Flexible(child: Shimmercontainer()),
               ],
             ),
-            baseColor: AppColorSchemes.white,
-            highlightColor: AppColorSchemes.blue4,
-          ),
+            //SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+            Row(
+              children: [
+                Flexible(child: Shimmercontainer()),
+                //SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+                Flexible(child: Shimmercontainer()),
+              ],
+            ),
+            //SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+            Row(
+              children: [
+                Flexible(child: Shimmercontainer()),
+                //SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+                Flexible(child: Shimmercontainer()),
+              ],
+            ),
+            //SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+            Row(
+              children: [
+                Flexible(child: Shimmercontainer()),
+                //SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+                Flexible(child: Shimmercontainer()),
+              ],
+            ),
+            //SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+            Row(
+              children: [
+                Flexible(child: Shimmercontainer()),
+                //SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+                Flexible(child: Shimmercontainer()),
+              ],
+            ),
+          ],
         ),
       ),
     );

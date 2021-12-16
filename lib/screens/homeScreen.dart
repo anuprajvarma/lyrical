@@ -6,7 +6,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:lyrical/components/Card.dart';
 import 'package:lyrical/components/shimmerLoading_screen.dart';
-import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/components/myTextfield_for_artist.dart';
 import 'package:lyrical/components/myTextfield_for_title.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
@@ -19,12 +18,12 @@ import 'package:lyrical/screens/welcomeScreen.dart';
 final _auth = FirebaseAuth.instance;
 final firestore = FirebaseFirestore.instance;
 
-class HomeScreen1 extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _HomeScreenState1 createState() => _HomeScreenState1();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState1 extends State<HomeScreen1> {
+class _HomeScreenState extends State<HomeScreen> {
   var fc53f4361ba7e110bac6bca264924af0;
 
   var title;
@@ -141,7 +140,7 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 40,
+                              height: MediaQuery.of(context).size.height * 0.07,
                             ),
                             MyTextField_artist(
                               hintString: 'Search   title',
@@ -208,6 +207,22 @@ class _HomeScreenState1 extends State<HomeScreen1> {
                               ),
                             ),
                             SizedBox(height: 10),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Top Lyrics',
+                                  style: TextStyle(
+                                    color: AppColorSchemes.white,
+                                    fontSize: 25,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Expanded(
                               child: GridView.count(
                                 crossAxisCount: 2,

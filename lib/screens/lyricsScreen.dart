@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:lyrical/components/imageLoading.dart';
 import 'package:lyrical/components/shimmerLoading_screen.dart';
 import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
@@ -291,7 +292,7 @@ class _LyricsScreenState extends State<LyricsScreen> {
                                   child: Column(
                                   children: [
                                     if (status == true)
-                                      ShimmerLoading()
+                                      ImageLoading()
                                     else
                                       Center(
                                           child: Text(
