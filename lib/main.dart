@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFF053742),
+        scaffoldBackgroundColor: Color(0xFFE8F0F2),
         appBarTheme: AppBarTheme(color: const Color(0xFF0C1136)),
       ),
       home: checkLogin() ? MainAppNavigation() : WelcomeScreen(),

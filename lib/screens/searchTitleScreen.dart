@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:lyrical/components/Card.dart';
+import 'package:lyrical/components/shimmerForBox.dart';
 import 'package:lyrical/components/shimmerLoading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/homeScreen.dart';
@@ -13,23 +15,24 @@ import 'dart:convert';
 final _auth = FirebaseAuth.instance;
 final firestore = FirebaseFirestore.instance;
 
-class HomeScreen2 extends StatefulWidget {
+class SearchTitleScreen extends StatefulWidget {
   String title_name;
 
-  HomeScreen2({this.title_name = ''});
+  SearchTitleScreen({this.title_name = ''});
 
   @override
-  _HomeScreenState2 createState() => _HomeScreenState2(title_name: title_name);
+  _SearchTitleScreen createState() =>
+      _SearchTitleScreen(title_name: title_name);
 }
 
-class _HomeScreenState2 extends State<HomeScreen2> {
+class _SearchTitleScreen extends State<SearchTitleScreen> {
   var fc53f4361ba7e110bac6bca264924af0;
   var title;
   var artist;
   List<Widget> card = [];
   String title_name;
 
-  _HomeScreenState2({this.title_name = ''});
+  _SearchTitleScreen({this.title_name = ''});
 
   Future getUserdata() async {
     http.Response response = await http.get(Uri.parse(
@@ -54,79 +57,100 @@ class _HomeScreenState2 extends State<HomeScreen2> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColorSchemes.white,
-      child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            toolbarHeight: 100,
-            elevation: 0,
-            title: Row(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.03,
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: AppColorSchemes.white,
+        appBar: AppBar(
+          toolbarHeight: 100,
+          elevation: 0,
+          title: Row(
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.03,
+              ),
+              Text(
+                'Lyrics',
+                style: TextStyle(
+                  color: AppColorSchemes.blue1,
+                  fontSize: 28,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.bold,
                 ),
-                Text(
-                  'Search Title',
-                  style: TextStyle(
-                    color: AppColorSchemes.blue1,
-                    fontSize: 28,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            backgroundColor: AppColorSchemes.white,
-            automaticallyImplyLeading: false,
-            actions: [
-              Theme(
-                data: Theme.of(context).copyWith(
-                    iconTheme: IconThemeData(color: AppColorSchemes.blue1)),
-                child: PopupMenuButton<int>(
-                    padding: EdgeInsets.all(20),
-                    color: Colors.red,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(100))),
-                    onSelected: (item) => onSelected(context, item),
-                    itemBuilder: (context) => [
-                          PopupMenuItem<int>(
-                              value: 0,
-                              child: Row(
-                                children: [
-                                  Icon(Icons.logout,
-                                      color: AppColorSchemes.white),
-                                  SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.3),
-                                  Text(
-                                    'Sign Out',
-                                    style: TextStyle(
-                                      color: AppColorSchemes.white,
-                                      fontSize: 10,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )
-                                ],
-                              ))
-                        ]),
-              )
+              ),
             ],
           ),
-          body: Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(50),
-                    topLeft: Radius.circular(50)),
-                color: AppColorSchemes.blue1),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FutureBuilder(
-                  future: getUserdata(),
-                  builder: (context, AsyncSnapshot snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done) {
+          backgroundColor: AppColorSchemes.white,
+          automaticallyImplyLeading: false,
+          actions: [
+            Theme(
+              data: Theme.of(context).copyWith(
+                  iconTheme: IconThemeData(color: AppColorSchemes.blue1)),
+              child: PopupMenuButton<int>(
+                  padding: EdgeInsets.all(20),
+                  color: Colors.red,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(100))),
+                  onSelected: (item) => onSelected(context, item),
+                  itemBuilder: (context) => [
+                        PopupMenuItem<int>(
+                            value: 0,
+                            child: Row(
+                              children: [
+                                Icon(Icons.logout,
+                                    color: AppColorSchemes.white),
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.005),
+                                Text(
+                                  'Sign Out',
+                                  style: TextStyle(
+                                    color: AppColorSchemes.white,
+                                    fontSize: 10,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              ],
+                            ))
+                      ]),
+            )
+          ],
+        ),
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(50), topLeft: Radius.circular(50)),
+              color: AppColorSchemes.blue1),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FutureBuilder(
+                future: getUserdata(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    if (card.length == 0) {
+                      return Center(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.frownOpen,
+                            color: AppColorSchemes.white,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.03,
+                          ),
+                          Text(
+                            'No lyrics',
+                            style: TextStyle(
+                              color: AppColorSchemes.white,
+                              fontFamily: 'Poppins',
+                            ),
+                          )
+                        ],
+                      ));
+                    } else {
                       return Container(
                         child: Column(
                           children: [
@@ -135,6 +159,8 @@ class _HomeScreenState2 extends State<HomeScreen2> {
                             ),
                             Expanded(
                               child: GridView.count(
+                                addAutomaticKeepAlives: true,
+                                cacheExtent: double.infinity,
                                 crossAxisCount: 2,
                                 children: card,
                                 // crossAxisSpacing: 10,
@@ -145,12 +171,12 @@ class _HomeScreenState2 extends State<HomeScreen2> {
                           ],
                         ),
                       );
-                    } else {
-                      return Center(child: ShimmerLoading());
                     }
-                  }),
-            ),
-          )),
-    );
+                  } else {
+                    return Center(child: ShimmerBox());
+                  }
+                }),
+          ),
+        ));
   }
 }

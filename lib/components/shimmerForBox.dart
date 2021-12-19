@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lyrical/constant/constantContainer.dart';
 import 'package:lyrical/constant/shimmerContainer.dart';
 
 class ShimmerBox extends StatelessWidget {
@@ -7,50 +6,24 @@ class ShimmerBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Padding(
+      padding: const EdgeInsets.only(top: 35),
       child: Container(
-        child: Column(
+        child: GridView.count(
+          childAspectRatio: 1.5,
+          crossAxisCount: 2,
+          addAutomaticKeepAlives: true,
+          cacheExtent: double.infinity,
           children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-            Row(
-              children: [
-                Flexible(child: Shimmercontainer()),
-                //SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-                Flexible(child: Shimmercontainer()),
-              ],
-            ),
-            //SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-            Row(
-              children: [
-                Flexible(child: Shimmercontainer()),
-                //SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-                Flexible(child: Shimmercontainer()),
-              ],
-            ),
-            //SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-            Row(
-              children: [
-                Flexible(child: Shimmercontainer()),
-                //SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-                Flexible(child: Shimmercontainer()),
-              ],
-            ),
-            //SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-            Row(
-              children: [
-                Flexible(child: Shimmercontainer()),
-                //SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-                Flexible(child: Shimmercontainer()),
-              ],
-            ),
-            //SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-            Row(
-              children: [
-                Flexible(child: Shimmercontainer()),
-                //SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-                Flexible(child: Shimmercontainer()),
-              ],
-            ),
+            Shimmercontainer(),
+            Shimmercontainer(),
+            Shimmercontainer(),
+            Shimmercontainer(),
+            Shimmercontainer(),
+            Shimmercontainer(),
+            Shimmercontainer(),
+            Shimmercontainer(),
+            Shimmercontainer()
           ],
         ),
       ),

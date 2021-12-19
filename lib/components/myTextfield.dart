@@ -2,28 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 
 // ignore: camel_case_types
-class MyTextField_artist extends StatefulWidget {
+class MyTextField extends StatelessWidget {
+  final IconData? icon;
   final String hintString;
-  void Function(String)? onChanged;
+  final TextEditingController? controller;
 
-  MyTextField_artist({required this.hintString, this.onChanged});
+  MyTextField({required this.hintString, this.controller, this.icon});
 
-  @override
-  State<MyTextField_artist> createState() => _MyTextField_artistState();
-}
-
-// ignore: camel_case_types
-class _MyTextField_artistState extends State<MyTextField_artist> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.88,
-        height: MediaQuery.of(context).size.height * 0.07,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Color(0xFF0F5C61),
+          color: AppColorSchemes.blue2,
         ),
         child: Row(
           children: [
@@ -31,7 +24,7 @@ class _MyTextField_artistState extends State<MyTextField_artist> {
               width: MediaQuery.of(context).size.width * 0.04,
             ),
             Icon(
-              Icons.person,
+              icon,
               color: Color(0xFF2C88B6),
             ),
             SizedBox(
@@ -40,16 +33,15 @@ class _MyTextField_artistState extends State<MyTextField_artist> {
             Expanded(
               child: TextField(
                 autofocus: false,
-                onChanged: widget.onChanged,
+                controller: controller,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintStyle: TextStyle(
-                      color: Color(0xFF457585),
+                      color: AppColorSchemes.white.withOpacity(0.5),
                       fontSize: 20,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w500),
-                  fillColor: AppColorSchemes.white,
-                  hintText: widget.hintString,
+                  hintText: hintString,
                 ),
                 style: TextStyle(
                     color: AppColorSchemes.white,
