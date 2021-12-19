@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:lyrical/components/imageLoading.dart';
-import 'package:lyrical/components/shimmerLoading_screen.dart';
-import 'package:lyrical/components/loading_screen.dart';
+import 'package:lyrical/components/shimmerLoading.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
+import 'package:lyrical/constant/shimmerContainer.dart';
 import 'package:lyrical/firebase/addLike.dart';
 import 'package:lyrical/firebase/checkLike.dart';
 import 'dart:convert';
@@ -168,163 +168,171 @@ class _LyricsScreenState extends State<LyricsScreen> {
             color: AppColorSchemes.blue1),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 35,
-              ),
-              Container(
-                height: 50,
-                width: MediaQuery.of(context).size.width * 0.89,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColorSchemes.blue2,
+          child: Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 35,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.person,
-                        color: AppColorSchemes.blue3,
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
-                        child: Text(
-                          artist,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: AppColorSchemes.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Poppins',
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
+                Container(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width * 0.89,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColorSchemes.blue2,
                   ),
-                ),
-              ),
-              SizedBox(height: 15),
-              Container(
-                height: 50,
-                width: MediaQuery.of(context).size.width * 0.89,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColorSchemes.blue2,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.headphones,
-                        color: AppColorSchemes.blue3,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.04,
-                      ),
-                      Expanded(
-                        child: Text(
-                          title,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: AppColorSchemes.white,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Expanded(
-                child: Container(
-                    width: MediaQuery.of(context).size.width * 0.89,
-                    height: 580,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColorSchemes.blue2,
-                    ),
-                    child: Column(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Icon(
-                                FontAwesomeIcons.music,
-                                size: 25,
-                                color: AppColorSchemes.blue3,
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.04,
-                              ),
-                              Text(
-                                'Lyrics',
-                                style: TextStyle(
-                                  color: AppColorSchemes.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Poppins',
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ],
-                          ),
+                        Icon(
+                          Icons.person,
+                          color: AppColorSchemes.blue3,
                         ),
                         SizedBox(
-                          height: 20,
+                          width: 20,
                         ),
-                        isLoading
-                            ? Container(
-                                child: Column(
+                        Expanded(
+                          child: Text(
+                            artist,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: AppColorSchemes.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Poppins',
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 15),
+                Container(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width * 0.89,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColorSchemes.blue2,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.headphones,
+                          color: AppColorSchemes.blue3,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.04,
+                        ),
+                        Expanded(
+                          child: Text(
+                            title,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: AppColorSchemes.white,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Expanded(
+                  child: Container(
+                      width: MediaQuery.of(context).size.width * 0.89,
+                      height: 580,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: AppColorSchemes.blue2,
+                      ),
+                      child: Expanded(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
                                 children: [
-                                  if (status == true)
-                                    ImageLoading()
-                                  else
-                                    Center(
-                                        child: Text(
-                                      'No lyrics',
-                                      style: TextStyle(
-                                        color: AppColorSchemes.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Poppins',
-                                        fontSize: 18,
-                                      ),
-                                    ))
-                                ],
-                              ))
-                            : Expanded(
-                                child: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    lyric.toString(),
+                                  Icon(
+                                    FontAwesomeIcons.music,
+                                    size: 25,
+                                    color: AppColorSchemes.blue3,
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.04,
+                                  ),
+                                  Text(
+                                    'Lyrics',
                                     style: TextStyle(
                                       color: AppColorSchemes.white,
-                                      fontSize: 17.0,
+                                      fontWeight: FontWeight.bold,
                                       fontFamily: 'Poppins',
-                                      wordSpacing: 3,
+                                      fontSize: 18,
                                     ),
                                   ),
-                                ),
-                              ))
-                      ],
-                    )),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-            ],
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            isLoading
+                                ? Container(
+                                    child: Expanded(
+                                    child: Column(
+                                      children: [
+                                        if (status == true)
+                                          // ImageLoading()
+                                          ShimmerLoading()
+                                        else
+                                          Center(
+                                              child: Text(
+                                            'No lyrics',
+                                            style: TextStyle(
+                                              color: AppColorSchemes.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Poppins',
+                                              fontSize: 18,
+                                            ),
+                                          ))
+                                      ],
+                                    ),
+                                  ))
+                                : Expanded(
+                                    child: SingleChildScrollView(
+                                    scrollDirection: Axis.vertical,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        lyric.toString(),
+                                        style: TextStyle(
+                                          color: AppColorSchemes.white,
+                                          fontSize: 17.0,
+                                          fontFamily: 'Poppins',
+                                          wordSpacing: 3,
+                                        ),
+                                      ),
+                                    ),
+                                  ))
+                          ],
+                        ),
+                      )),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
           ),
         ),
       ),

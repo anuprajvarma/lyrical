@@ -4,13 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lyrical/components/shimmerForBox.dart';
-import 'package:lyrical/components/shimmerLoading_screen.dart';
-import 'package:lyrical/components/loading_screen.dart';
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/firebase/getLyrics.dart';
 import 'package:lyrical/components/Card.dart';
 import 'package:lyrical/screens/homeScreen.dart';
-import 'package:lyrical/screens/welcomeScreen.dart';
 
 final _auth = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;
@@ -136,21 +133,23 @@ class _LikesScreenState extends State<LikesScreen> {
                   ));
                 } else {
                   return Container(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 25,
-                        ),
-                        Expanded(
-                          child: GridView.count(
-                            crossAxisCount: 2,
-                            children: likeCards,
-                            // crossAxisSpacing: 10,
-                            // mainAxisSpacing: 15,
-                            childAspectRatio: 1.5,
+                    child: Expanded(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 25,
                           ),
-                        ),
-                      ],
+                          Expanded(
+                            child: GridView.count(
+                              crossAxisCount: 2,
+                              children: likeCards,
+                              // crossAxisSpacing: 10,
+                              // mainAxisSpacing: 15,
+                              childAspectRatio: 1.5,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
 

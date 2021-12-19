@@ -1,18 +1,15 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:http/http.dart' as http;
 import 'package:lyrical/components/Card.dart';
 import 'package:lyrical/components/shimmerForBox.dart';
-import 'package:lyrical/components/shimmerLoading_screen.dart';
-import 'package:lyrical/components/loading_screen.dart';
-
 import 'package:lyrical/constant/colorSchemes.dart';
 import 'package:lyrical/screens/homeScreen.dart';
-import 'package:lyrical/screens/welcomeScreen.dart';
 import 'dart:convert';
 
 final _auth = FirebaseAuth.instance;
@@ -157,23 +154,26 @@ class _SearchLyricScreen extends State<SearchLyricScreen> {
                       ));
                     } else {
                       return Container(
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width * 0.09,
-                            ),
-                            Expanded(
-                              child: GridView.count(
-                                addAutomaticKeepAlives: true,
-                                cacheExtent: double.infinity,
-                                crossAxisCount: 2,
-                                children: card,
-                                // crossAxisSpacing: 10,
-                                // mainAxisSpacing: 15,
-                                childAspectRatio: 1.5,
+                        child: Expanded(
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.width * 0.09,
                               ),
-                            ),
-                          ],
+                              Expanded(
+                                child: GridView.count(
+                                  addAutomaticKeepAlives: true,
+                                  cacheExtent: double.infinity,
+                                  crossAxisCount: 2,
+                                  children: card,
+                                  // crossAxisSpacing: 10,
+                                  // mainAxisSpacing: 15,
+                                  childAspectRatio: 1.5,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     }
